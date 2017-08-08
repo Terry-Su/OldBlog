@@ -8,6 +8,7 @@ import {
 import BreadcrumbContainer from '../container/BreadcrumbContainer'
 import DetailBoxContainer from '../container/DetailBoxContainer'
 import Copyright from './Copyright'
+import BackToTopContainer from '../container/BackToTopContainer'
 
 const {
   Header
@@ -29,8 +30,16 @@ export default function DetailPage() {
           <DetailBoxContainer/>
         </Col>
       </Row>
-
-      <br /><br /><br />
+      <Row style={{
+        paddingTop: '50px'
+      }}>
+        <Col span={22} style={{
+          textAlign: 'right'
+        }}>
+          <BackToTopContainer />
+        </Col>
+        <Col xs={1} sm={1}></Col>
+      </Row>
       <Copyright />
     </div>
   )

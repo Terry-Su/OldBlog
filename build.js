@@ -89,7 +89,7 @@ function getBlogData() {
     // reformat create time
     blogs = blogs.map(blog => {
       return Object.assign(blog, {
-        createTime: moment(blog.createTime).format()
+        createTime: moment(blog.createTime).format('YYYY/MM/DD h:mm')
       })
     })
     return blogs

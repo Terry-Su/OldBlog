@@ -11,7 +11,7 @@ export default function NewestColumnItem({ blog, onClick }) {
       padding: '10px 0 10px 0'
     }} onClick={onClick}>
 
-      <a href="javascript:">
+      <a href="javascript:void(0)">
         <span style={{
             paddingLeft: '20px',
             color: '#555'

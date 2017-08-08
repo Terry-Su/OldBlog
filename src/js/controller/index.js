@@ -54,12 +54,18 @@ class Controller {
   }) {
     // category
     if (listMode === 0) {
-      self.onCategoryClick(text)
+      this.onCategoryClick(text)
     }
     // tag
     if (listMode === 1) {
-      self.onTagClick(text)
+      this.onTagClick(text)
     }
+
+    this.scrollToTop()
+  }
+
+  onThirdClick() {
+    this.scrollToTop()
   }
 
   onHomeClick() {
@@ -67,6 +73,12 @@ class Controller {
     UPDATE_ROUTEINFO({
       listMode: -1
     })
+
+    this.scrollToTop()
+  }
+
+  scrollToTop() {
+    window.scrollTo(0, 0)
   }
 
   init() {

@@ -6,6 +6,11 @@ import './sass/ts_markdown.scss'
 
 // polyfill
 import 'babel-polyfill'
+
+// jquery
+// import jQuery from './js/util/jquery.js'
+// window.$ = window.jQuery = jQuery
+
 // controller
 import controller from './js/controller/index.js'
 controller.init()
