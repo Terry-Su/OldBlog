@@ -5,13 +5,13 @@ import { createStore, applyMiddleware, bindActionCreators } from 'redux'
 import { FETCH_BLOG_DATA, FETCH_BLOG_DETAIL } from '../model/index'
 import getReducer from '../reducer/index'
 import BlogContainer from '../container/BlogContainer'
-import * as actions from '../action/index'
+import action from '../action/index'
 
+const {
+  UPDATE_ROUTE,
+  UPDATE_ROUTEINFO
+} = action
 
-let self
-
-let UPDATE_ROUTE = getBindedAction('UPDATE_ROUTE')
-let UPDATE_ROUTEINFO = getBindedAction('UPDATE_ROUTEINFO')
 
 class Controller {
   onCategoryClick(category) {
@@ -74,13 +74,12 @@ class Controller {
       .then(response => response.json())
       .then(blogData => {
         const blogReducer = getReducer(blogData)
-        let store = createStore(blogReducer)
 
-        // store redux store into global varible
-        window.R = store
+        window.ReduxStore = createStore(blogReducer)
+        window.getState = () => window.ReduxStore.getState()
 
         render(
-          <Provider store={store}>
+          <Provider store={ReduxStore}>
             <BlogContainer />
           </Provider>,
           document.getElementById('app')
@@ -89,9 +88,5 @@ class Controller {
   }
 }
 
-function getBindedAction(name) {
-  return (...arg) => bindActionCreators(actions, R.dispatch)[name](...arg)
-}
 
-self = new Controller
-export default self
+export default new Controller()
