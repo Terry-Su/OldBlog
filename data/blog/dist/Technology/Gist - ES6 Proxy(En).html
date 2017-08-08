@@ -1,0 +1,42 @@
+<h1>Introduction</h1>
+<p>&quot;Proxy&quot; is a frequently used pattern in both virtual world and real world. Those patterns(&quot;proxy&quot;, &quot;iterator&quot; and &quot;observer&quot;,etc) make coding more personably, as if we're building lots of maganificent skyscrapers with robust methods and tools.</p>
+<h1>Basic concept</h1>
+<h2>Single request</h2>
+<p><img src="https://sfault-image.b0.upaiyun.com/114/495/1144958509-596733a98f665_articlex" alt=""></p>
+<h2>Interaction</h2>
+<p>image2
+<img src="https://sfault-image.b0.upaiyun.com/368/275/3682758150-596734870a989_articlex" alt=""></p>
+<h1>Application - Observer</h1>
+<pre><code class="language-js"><span class="hljs-comment">// Create an observer to detect the opening state of light</span>
+<span class="hljs-keyword">const</span> basicState = {
+	<span class="hljs-attr">open</span>: <span class="hljs-literal">false</span>
+}
+<span class="hljs-keyword">const</span> lightState = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(basicState, {
+	set(obj, prop, value) {
+		<span class="hljs-keyword">if</span> (prop === <span class="hljs-string">'open'</span>) {
+			<span class="hljs-keyword">switch</span>(value) {
+				<span class="hljs-keyword">case</span> <span class="hljs-literal">true</span>: 
+					<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Light on!'</span>)
+					<span class="hljs-keyword">break</span>
+				<span class="hljs-keyword">case</span> <span class="hljs-literal">false</span>: 
+					<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Light off!'</span>)
+			}
+		}
+
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+	}
+})
+
+
+<span class="hljs-comment">// Turn on light</span>
+lightState.open = <span class="hljs-literal">true</span>    <span class="hljs-comment">// output: Light on!</span>
+
+<span class="hljs-comment">// Turn off light</span>
+lightState.open = <span class="hljs-literal">false</span>    <span class="hljs-comment">// output: Light off!</span>
+</code></pre>
+<h1>Grammar</h1>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy</a></p>
+<h1>Conclusion</h1>
+<p>Try Proxy? Trust it at first</p>
+<div id="ts_data" style="display:none;">{&quot;tags&quot;: [&quot;es6&quot;, &quot;javascript&quot;, &quot;proxy&quot;]}</div>
+</details>

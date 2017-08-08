@@ -9,7 +9,7 @@ var plugins = [];
 if (NODE_ENV === 'PROD') {
   // add plugins
   // plugins.push(new webpack.optimize.CommonsChunkPlugin('vendor.js'));
-  plugins.push(new webpack.optimize.UglifyJsPlugin());
+  // plugins.push(new webpack.optimize.UglifyJsPlugin());
 }
 
 if (NODE_ENV === 'DEV') {

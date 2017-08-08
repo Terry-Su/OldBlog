@@ -34,6 +34,7 @@ class Controller {
     blog,
     listMode
   }) {
+    const self = this
     FETCH_BLOG_DETAIL(blog.path)
       .then(response => response.text())
       .then(html => {
@@ -45,6 +46,7 @@ class Controller {
           listMode: listMode !== undefined ? listMode : window.getState().routeInfo.listMode
         })
         UPDATE_ROUTE(2)
+        self.scrollToTop()
       })
   }
 
