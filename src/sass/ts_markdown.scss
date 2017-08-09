@@ -665,3 +665,9 @@ body {
       border-bottom-color: #eee;
     }
 }
+
+.highlight {
+  ul, ol{
+    list-style: circle inside;
+  }
+}

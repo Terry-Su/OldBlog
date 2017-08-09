@@ -22,7 +22,7 @@ if (NODE_ENV === 'DEV') {
 module.exports = {
   entry: './src/entry.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'blog'),
     filename: 'bundle.js'
   },
   devtool: "source-map",
