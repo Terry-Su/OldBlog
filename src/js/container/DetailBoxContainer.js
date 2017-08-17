@@ -8,7 +8,10 @@ import { FETCH_BLOG_DETAIL } from '../model/index'
 import DetailBox from '../component/DetailBox'
 
 const mapStateToProps = (state, ownProps) => {
+  const { innerState } = state
+  const { cacheDetail } = innerState
   return {
+    cacheDetail
   }
 }
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Blog from '../component/Blog'
 
 const mapStateToProps = (state, ownProps) => {
-  const { blog } = state
+  const { blog, innerState } = state
   const { catalog, tags, blogs } = blog
   return {
     catalog,

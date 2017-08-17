@@ -6,16 +6,11 @@ import {
 import DetailBoxContent from './DetailBoxContent'
 import DetailBoxInfo from './DetailBoxInfo'
 
-export default function DetailBox({ routeInfo }) {
-  const {
-    blog
-  } = routeInfo
-
+export default function DetailBox({ blog, cacheDetail }) {
   const {
     title,
     createTime,
     tags,
-    content,
     repostNotice
   } = blog
 
@@ -25,7 +20,7 @@ export default function DetailBox({ routeInfo }) {
         textAlign: 'center'
       }}>{ title }</h1>
       <br />
-      <DetailBoxContent content={content}/>
+      <DetailBoxContent content={cacheDetail}/>
       <br />
       <Row type='flex' justify='center'>
         <Col xs={23} sm={23}>

@@ -29,9 +29,7 @@ const mapStateToProps = (state, ownProps) => {
 function mapDispatchToProps(dispatch) {
   return {
     onItemClick(blog) {
-      controller.onBlogLinkClick({
-        blog
-      })
+      controller.onBlogLinkClick(blog)
     }
   }
 }

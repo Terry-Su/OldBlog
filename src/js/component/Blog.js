@@ -14,7 +14,7 @@ import DetailPage from './DetailPage'
 import LaboratoryPage from './LaboratoryPage'
 
 
-export default function Blog({ history, catalog, tags, blogs }) {
+export default function Blog({ history, catalog, tags, blogs, cacheDetail }) {
   return (
     <Router history={history}>
       <div>
@@ -39,7 +39,7 @@ export default function Blog({ history, catalog, tags, blogs }) {
           // Blog detail page
           blogs.map((blog, index) => {
             const targetDetailPage =  () => <DetailPage blog={blog} />
-            return <Route key={index} path={`/tag/${blog.id}`} component={targetDetailPage} />
+            return <Route key={index} path={`/blog/${blog.id}`} component={targetDetailPage} />
           })
         }
       </div>

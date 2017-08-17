@@ -13,6 +13,10 @@ import action from '../action/index'
 
 import logger from '../util/logger'
 
+const {
+  MODIFY_INNERSTATE
+} = action
+
 
 class Controller {
   onCategoryClick(category) {
@@ -23,16 +27,15 @@ class Controller {
     browserHistory.push(`/tag/${tag}`)
   }
 
-  onBlogLinkClick({
-    blog
-  }) {
-    browserHistory.push(`/blog/${blog.id}`)
-    // const self = this
-    // FETCH_BLOG_DETAIL(blog.path)
-    //   .then(response => response.text())
-    //   .then(html => {
-    //     self.scrollToTop()
-    //   })
+  onBlogLinkClick(blog) {
+    const self = this
+    FETCH_BLOG_DETAIL(blog.path)
+      .then(response => response.text())
+      .then(html => {
+        MODIFY_INNERSTATE('cacheDetail', html)
+        browserHistory.push(`/blog/${blog.id}`)
+        self.scrollToTop()
+      })
   }
 
   onSecondClick({

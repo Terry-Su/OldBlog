@@ -14,33 +14,36 @@ const {
   Header
 } = Layout
 
-export default function DetailPage({ blog }) {
-  return (
-    <div>
-      <br />
-      <Row type='flex' justify='center'>
-        <Col xs={1} sm={1} />
-        <Col xs={23} sm={23}>
-          <BreadcrumbContainer isBlogDetail blog={blog}/>
-        </Col>
-      </Row>
-      <br /><br />
-      <Row type='flex' justify='center'>
-        <Col xs={23} sm={18}>
-          <DetailBoxContainer/>
-        </Col>
-      </Row>
-      <Row style={{
-        paddingTop: '50px'
-      }}>
-        <Col span={22} style={{
-          textAlign: 'right'
+export default class DetailPage extends React.Component{
+  render() {
+    const { blog } = this.props
+    return (
+      <div>
+        <br />
+        <Row type='flex' justify='center'>
+          <Col xs={1} sm={1} />
+          <Col xs={23} sm={23}>
+            <BreadcrumbContainer isBlogDetail blog={blog} />
+          </Col>
+        </Row>
+        <br /><br />
+        <Row type='flex' justify='center'>
+          <Col xs={23} sm={18}>
+            <DetailBoxContainer blog={blog} />
+          </Col>
+        </Row>
+        <Row style={{
+          paddingTop: '50px'
         }}>
-          <BackToTopContainer />
-        </Col>
-        <Col xs={1} sm={1}></Col>
-      </Row>
-      <Copyright />
-    </div>
-  )
+          <Col span={22} style={{
+            textAlign: 'right'
+          }}>
+            <BackToTopContainer />
+          </Col>
+          <Col xs={1} sm={1}></Col>
+        </Row>
+        <Copyright />
+      </div>
+    )
+  }
 }

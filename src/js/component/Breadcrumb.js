@@ -12,9 +12,9 @@ export default function Breadcrumb({ category, isCategory, tag, isTag, onHomeCli
       isTag ? tag : ''
     )
   }
-  const third = {
-    blog
-  }
+  // const third = {
+  //   blog
+  // }
   return (
     <div>
       <AntdBreadcrumb>
@@ -25,9 +25,9 @@ export default function Breadcrumb({ category, isCategory, tag, isTag, onHomeCli
           (isCategory || isTag) && <AntdBreadcrumb.Item><a href="javascript:void(0)" onClick={ () => onSecondClick(second) }>{ second.text }</a></AntdBreadcrumb.Item>
         }
 
-        {
+        {/* {
           third && <AntdBreadcrumb.Item><a href="javascript:void(0)" onClick={ () => onThirdClick(third) }>{ third.blog.title }</a></AntdBreadcrumb.Item>
-        }
+        } */}
       </AntdBreadcrumb>
     </div>
   )

@@ -17,7 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     onTitleClick(blog) {
-      controller.onBlogLinkClick()
+      controller.onBlogLinkClick(blog)
     }
   }
 }
