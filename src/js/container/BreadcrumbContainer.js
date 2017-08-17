@@ -7,42 +7,8 @@ import controller from '../controller/index'
 import Breadcrumb from '../component/Breadcrumb'
 
 const mapStateToProps = (state, ownProps) => {
-  const {
-    route,
-    routeInfo
-  } = state
-
-  const {
-    category,
-    tag,
-    listMode,
-    blog
-  } = routeInfo
-
-  let link = {}
-
-  // list
-  // category
-  link['second'] = {
-    text: category || blog.category,
-    listMode
-  }
-  // tag
-  listMode === 1 && (link['second'] = {
-    text: tag,
-    listMode
-  })
-
-  // detail
-  if (route === 2) {
-    link['third'] = {
-      blog: blog
-    }
-  }
-
   return {
-    link,
-    route: state.route
+    
   }
 }
 

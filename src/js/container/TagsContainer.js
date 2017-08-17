@@ -8,8 +8,7 @@ import Tags from '../component/Tags'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    tags: state.tags,
-    routeInfo: state.routeInfo
+    tags: state.blog.tags
   }
 }
 

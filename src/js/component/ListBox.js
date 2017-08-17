@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import ListBoxItem from './ListBoxItem'
 
-export default function ListBox({ blogs, routeInfo, onItemClick }) {
+export default function ListBox({ blogs, onItemClick }) {
   return (
     <div>
       <Card noHovering bordered={false}>

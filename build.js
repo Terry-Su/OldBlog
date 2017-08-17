@@ -43,19 +43,6 @@ function getBlogData() {
     blogs: getBlogs(),
     catalog: getCatalog(),
     tags: getTags(),
-    route: 0,
-    routeInfo: {
-      category: null,
-      tag: null,
-      blog: null, 
-      secondLinkInfo: null,
-      thirdLinkInfo: null,
-      /**
-       * 0 show category
-       * 1 show tag
-       */
-      listMode: 0
-    }
   }
 
   function getBlogs() {
@@ -133,6 +120,7 @@ function getBlogData() {
       }
 
       blogs.push({
+        id: generateId(),
         title: name.replace('.html',''),
         path: resolvedPath,
         abstract,
@@ -170,3 +158,9 @@ function getBlogData() {
   }
 }
 
+function generateId() {
+  return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, c => {
+    let r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8
+    return v.toString(16)
+  }) + (new Date().getTime())
+}

@@ -5,7 +5,7 @@ import Notion from '../component/Notion'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    blogTitle: state.blogTitle
+    blogTitle: state.blog.blogTitle
   }
 }
 

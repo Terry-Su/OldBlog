@@ -9,15 +9,10 @@ import DetailBox from '../component/DetailBox'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    routeInfo: state.routeInfo
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  const {
-    UPDATE_ROUTE,
-    UPDATE_ROUTEINFO
-  } = bindActionCreators(actions, dispatch)
 
   return {
 

@@ -17,17 +17,17 @@ if (NODE_ENV === 'DEV') {
   app.use(express.static(__dirname))
 
   // 404
-  app.use(
-    function (req, res, next) {
-      // console.log(res.statusCode)
-      // if (res.statusCode === 404) {
-      //   console.log(123)
-      //   // res.redirect(__dirname +  '404.html')
-      // }
-      res.status(400);
-      res.redirect('http://localhost:' + NODE_PORT + '/404.html');
-    }
-  )
+  // app.use(
+  //   function (req, res, next) {
+  //     // console.log(res.statusCode)
+  //     // if (res.statusCode === 404) {
+  //     //   console.log(123)
+  //     //   // res.redirect(__dirname +  '404.html')
+  //     // }
+  //     // res.status(400);
+  //     // res.redirect('http://localhost:' + NODE_PORT + '/404.html');
+  //   }
+  // )
 
   app.listen(parseInt(NODE_PORT))
 }
@@ -37,7 +37,7 @@ module.exports = {
   entry: './src/entry.js',
   output: {
     path: __dirname,
-    filename: 'bundle.js'
+    filename: 'public/bundle.js'
   },
   devtool: "source-map",
   module: {

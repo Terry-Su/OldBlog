@@ -4,11 +4,17 @@ import { Breadcrumb as AntdBreadcrumb } from 'antd';
 
 
 
-export default function Breadcrumb({ link, onHomeClick, onSecondClick, onThirdClick }) {
-  const {
-    second,
-    third
-  } = link
+export default function Breadcrumb({ category, isCategory, tag, isTag, onHomeClick, onSecondClick, onThirdClick }) {
+  const second = {
+    isTag,
+    isCategory,
+    text: isCategory ? category : (
+      isTag ? tag : ''
+    )
+  }
+  const third = {
+    blog
+  }
   return (
     <div>
       <AntdBreadcrumb>
@@ -16,7 +22,7 @@ export default function Breadcrumb({ link, onHomeClick, onSecondClick, onThirdCl
           <span onClick={onHomeClick}><a href="javascript:void(0)">Home</a></span>
         </AntdBreadcrumb.Item>
         {
-          (second || third) && <AntdBreadcrumb.Item><a href="javascript:void(0)" onClick={ () => onSecondClick(second) }>{ second.text }</a></AntdBreadcrumb.Item>
+          (isCategory || isTag) && <AntdBreadcrumb.Item><a href="javascript:void(0)" onClick={ () => onSecondClick(second) }>{ second.text }</a></AntdBreadcrumb.Item>
         }
 
         {

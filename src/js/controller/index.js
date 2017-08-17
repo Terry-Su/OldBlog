@@ -1,65 +1,49 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware, bindActionCreators } from 'redux'
+import { browserHistory } from 'react-router'
+import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
 import { FETCH_BLOG_DATA, FETCH_BLOG_DETAIL } from '../model/index'
-import getReducer from '../reducer/index'
+import { getBlogReducer } from '../reducer/index'
+import innerStateReducer from '../reducer/innerState'
+import reducers from '../reducer/index'
 import BlogContainer from '../container/BlogContainer'
 import action from '../action/index'
 
-const {
-  UPDATE_ROUTE,
-  UPDATE_ROUTEINFO
-} = action
+import logger from '../util/logger'
 
 
 class Controller {
   onCategoryClick(category) {
-    UPDATE_ROUTEINFO({
-      category,
-      listMode: 0
-    })
-    UPDATE_ROUTE(1)
+    browserHistory.push(`/${category}`)
   }
 
   onTagClick(tag) {
-    UPDATE_ROUTEINFO({
-      tag,
-      listMode: 1
-    })
-    UPDATE_ROUTE(1)
+    browserHistory.push(`/tag/${tag}`)
   }
 
   onBlogLinkClick({
-    blog,
-    listMode
+    blog
   }) {
-    const self = this
-    FETCH_BLOG_DETAIL(blog.path)
-      .then(response => response.text())
-      .then(html => {
-        UPDATE_ROUTEINFO({
-          blog: {
-            ...blog,
-            content: html
-          },
-          listMode: listMode !== undefined ? listMode : window.getState().routeInfo.listMode
-        })
-        UPDATE_ROUTE(2)
-        self.scrollToTop()
-      })
+    browserHistory.push(`/blog/${blog.id}`)
+    // const self = this
+    // FETCH_BLOG_DETAIL(blog.path)
+    //   .then(response => response.text())
+    //   .then(html => {
+    //     self.scrollToTop()
+    //   })
   }
 
   onSecondClick({
-    text,
-    listMode
+    isCategory,    
+    isTag,
+    text
   }) {
-    // category
-    if (listMode === 0) {
+    if (isCategory) {
       this.onCategoryClick(text)
     }
-    // tag
-    if (listMode === 1) {
+    if (isTag) {
       this.onTagClick(text)
     }
 
@@ -71,10 +55,7 @@ class Controller {
   }
 
   onHomeClick() {
-    UPDATE_ROUTE(0)
-    UPDATE_ROUTEINFO({
-      listMode: -1
-    })
+    browserHistory.push(`/`)
 
     this.scrollToTop()
   }
@@ -87,14 +68,22 @@ class Controller {
     FETCH_BLOG_DATA()
       .then(response => response.json())
       .then(blogData => {
-        const blogReducer = getReducer(blogData)
+        const blogReducer = getBlogReducer(blogData)
+        const reducer = combineReducers({
+          innerState: innerStateReducer,
+          blog: blogReducer,
+          routing: routerReducer
+        })
 
-        window.ReduxStore = createStore(blogReducer)
+        window.ReduxStore = createStore(reducer, applyMiddleware(logger))
         window.getState = () => window.ReduxStore.getState()
+
+        // crate history
+        const history = syncHistoryWithStore(browserHistory, ReduxStore)
 
         render(
           <Provider store={ReduxStore}>
-            <BlogContainer />
+            <BlogContainer history={history}/>
           </Provider>,
           document.getElementById('app')
         )
