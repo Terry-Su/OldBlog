@@ -9,7 +9,7 @@ var plugins = [];
 if (NODE_ENV === 'PROD') {
   // add plugins
   // plugins.push(new webpack.optimize.CommonsChunkPlugin('vendor.js'));
-  plugins.push(new webpack.optimize.UglifyJsPlugin());
+  // plugins.push(new webpack.optimize.UglifyJsPlugin());
 }
 
 if (NODE_ENV === 'DEV') {
@@ -36,9 +36,10 @@ if (NODE_ENV === 'DEV') {
 module.exports = {
   entry: './src/entry.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: __dirname,
     filename: 'bundle.js'
   },
+  devtool: "source-map",
   module: {
     rules: [
       {

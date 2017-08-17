@@ -5,13 +5,13 @@ import { createStore, applyMiddleware, bindActionCreators } from 'redux'
 import { FETCH_BLOG_DATA, FETCH_BLOG_DETAIL } from '../model/index'
 import getReducer from '../reducer/index'
 import BlogContainer from '../container/BlogContainer'
-import * as actions from '../action/index'
+import action from '../action/index'
 
+const {
+  UPDATE_ROUTE,
+  UPDATE_ROUTEINFO
+} = action
 
-let self
-
-let UPDATE_ROUTE = getBindedAction('UPDATE_ROUTE')
-let UPDATE_ROUTEINFO = getBindedAction('UPDATE_ROUTEINFO')
 
 class Controller {
   onCategoryClick(category) {
@@ -34,6 +34,7 @@ class Controller {
     blog,
     listMode
   }) {
+    const self = this
     FETCH_BLOG_DETAIL(blog.path)
       .then(response => response.text())
       .then(html => {
@@ -45,6 +46,7 @@ class Controller {
           listMode: listMode !== undefined ? listMode : window.getState().routeInfo.listMode
         })
         UPDATE_ROUTE(2)
+        self.scrollToTop()
       })
   }
 
@@ -54,12 +56,18 @@ class Controller {
   }) {
     // category
     if (listMode === 0) {
-      self.onCategoryClick(text)
+      this.onCategoryClick(text)
     }
     // tag
     if (listMode === 1) {
-      self.onTagClick(text)
+      this.onTagClick(text)
     }
+
+    this.scrollToTop()
+  }
+
+  onThirdClick() {
+    this.scrollToTop()
   }
 
   onHomeClick() {
@@ -67,6 +75,12 @@ class Controller {
     UPDATE_ROUTEINFO({
       listMode: -1
     })
+
+    this.scrollToTop()
+  }
+
+  scrollToTop() {
+    window.scrollTo(0, 0)
   }
 
   init() {
@@ -74,13 +88,12 @@ class Controller {
       .then(response => response.json())
       .then(blogData => {
         const blogReducer = getReducer(blogData)
-        let store = createStore(blogReducer)
 
-        // store redux store into global varible
-        window.R = store
+        window.ReduxStore = createStore(blogReducer)
+        window.getState = () => window.ReduxStore.getState()
 
         render(
-          <Provider store={store}>
+          <Provider store={ReduxStore}>
             <BlogContainer />
           </Provider>,
           document.getElementById('app')
@@ -89,9 +102,5 @@ class Controller {
   }
 }
 
-function getBindedAction(name) {
-  return (...arg) => bindActionCreators(actions, R.dispatch)[name](...arg)
-}
 
-self = new Controller
-export default self
+export default new Controller()

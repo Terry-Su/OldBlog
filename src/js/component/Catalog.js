@@ -17,7 +17,11 @@ export default class Catalog extends React.Component {
     const activeCategoryKey = '' + catalog.indexOf(category)
 
     return (
-      <div>
+      <div style={{
+        border: '1px solid #ddd',
+        borderRadius: '10px',
+        padding: '10px'
+      }}>
         <Menu style={{
           border: 'none'
         }} selectedKeys={shouldActiveCategory ? [activeCategoryKey] : []}>

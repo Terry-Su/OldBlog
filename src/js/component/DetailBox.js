@@ -21,7 +21,7 @@ export default function DetailBox({ routeInfo }) {
 
   return (
     <div id="detail">
-      <h1 style={{
+      <h1 id='blog_title' style={{
         textAlign: 'center'
       }}>{ title }</h1>
       <br />

@@ -13,14 +13,14 @@ export default function Breadcrumb({ link, onHomeClick, onSecondClick, onThirdCl
     <div>
       <AntdBreadcrumb>
         <AntdBreadcrumb.Item>
-          <span onClick={onHomeClick}><a href="javascrpt:">Home</a></span>
+          <span onClick={onHomeClick}><a href="javascript:void(0)">Home</a></span>
         </AntdBreadcrumb.Item>
         {
-          (second || third) && <AntdBreadcrumb.Item><a href="javascrpt:" onClick={ () => onSecondClick(second) }>{ second.text }</a></AntdBreadcrumb.Item>
+          (second || third) && <AntdBreadcrumb.Item><a href="javascript:void(0)" onClick={ () => onSecondClick(second) }>{ second.text }</a></AntdBreadcrumb.Item>
         }
 
         {
-          third && <AntdBreadcrumb.Item><a href="javascrpt:" onClick={ () => onThirdClick(third) }>{ third.blog.title }</a></AntdBreadcrumb.Item>
+          third && <AntdBreadcrumb.Item><a href="javascript:void(0)" onClick={ () => onThirdClick(third) }>{ third.blog.title }</a></AntdBreadcrumb.Item>
         }
       </AntdBreadcrumb>
     </div>
