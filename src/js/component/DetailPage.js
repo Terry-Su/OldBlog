@@ -14,14 +14,14 @@ const {
   Header
 } = Layout
 
-export default function DetailPage() {
+export default function DetailPage({ blog }) {
   return (
     <div>
       <br />
       <Row type='flex' justify='center'>
         <Col xs={1} sm={1} />
         <Col xs={23} sm={23}>
-          <BreadcrumbContainer />
+          <BreadcrumbContainer isBlogDetail blog={blog}/>
         </Col>
       </Row>
       <br /><br />

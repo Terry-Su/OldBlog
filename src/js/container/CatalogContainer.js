@@ -9,8 +9,7 @@ import Catalog from '../component/Catalog'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    catalog: state.catalog,
-    routeInfo: state.routeInfo
+    catalog: state.blog.catalog
   }
 }
 

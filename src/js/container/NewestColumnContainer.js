@@ -9,18 +9,15 @@ import NewestColumn from '../component/NewestColumn'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    title: state.NewestColumnTitle,
-    blogs: state.blogs
+    title: state.blog.NewestColumnTitle,
+    blogs: state.blog.blogs
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     onTitleClick(blog) {
-      controller.onBlogLinkClick({
-        blog,
-        listMode: 0
-      })
+      controller.onBlogLinkClick()
     }
   }
 }

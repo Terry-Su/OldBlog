@@ -8,23 +8,19 @@ import controller from '../controller/index'
 import ListBox from '../component/ListBox'
 
 const mapStateToProps = (state, ownProps) => {
-  const {
-    tag,
-    category,
-    listMode
-  } = state.routeInfo
-
-  let blogs = state.blogs.filter(blog => {
-    // only show category
-    if (listMode === 0) {
+  let blogs = state.blog.blogs
+  const { category, isCategory, tag, isTag } = ownProps
+  // filter blogs
+  blogs = blogs.filter(blog => {
+    if (isCategory) {
       return blog.category === category
     }
-    // only show tag
-    if (listMode === 1) {
-      return blog.tags.indexOf(tag) > -1
+    if (isTag) {
+      return blog.tags && blog.tags.some(theTag => theTag === tag)
     }
+    return false
   })
-
+  
   return {
     blogs
   }

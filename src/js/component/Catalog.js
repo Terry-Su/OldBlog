@@ -6,16 +6,9 @@ import TagsContainer from '../container/TagsContainer'
 
 export default class Catalog extends React.Component {
   render() {
-    const { catalog, routeInfo, onCategoryClick } = this.props
-    const {
-      category,
-      tag,
-      listMode
-    } = routeInfo
-
-    const shouldActiveCategory = listMode === 0
-    const activeCategoryKey = '' + catalog.indexOf(category)
-
+    const { catalog, category: activeCategory, isCategory, tag, isTag, onCategoryClick } = this.props
+    const activeCategoryKey = '' + catalog.indexOf(activeCategory)
+    
     return (
       <div style={{
         border: '1px solid #ddd',
@@ -24,7 +17,7 @@ export default class Catalog extends React.Component {
       }}>
         <Menu style={{
           border: 'none'
-        }} selectedKeys={shouldActiveCategory ? [activeCategoryKey] : []}>
+        }} selectedKeys={isCategory ? [activeCategoryKey] : []}>
           {
             catalog.map((category, index) =>
               <Menu.Item key={index}>
@@ -34,7 +27,7 @@ export default class Catalog extends React.Component {
             )
           }
         </Menu>
-        <TagsContainer />
+        <TagsContainer tag={tag} isTag/>
       </div>
     )
   }

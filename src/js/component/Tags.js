@@ -16,20 +16,14 @@ function TagBox({ color, onClick, children }) {
   )
 }
 
-export default function Tags({ tags, routeInfo, onTagClick }) {
-  const {
-    tag,
-    listMode
-  } = routeInfo
+export default function Tags({ tags, tag: activeTag, onTagClick }) {
 
-  const shouldActiveTag = listMode === 1
-  const activeIndex = tags.indexOf(tag)
   return (
     <div style={{
       padding: '10px'
     }}>
       {
-        tags.map((tag, index) => <TagBox key={index} color={shouldActiveTag && activeIndex === index ? '#108ee9' : 'blue'} onClick={() => onTagClick(tag)}>{tag}</TagBox>)
+        tags.map((tag, index) => <TagBox key={index} color={tag === activeTag ? '#108ee9' : 'blue'} onClick={() => onTagClick(tag)}>{tag}</TagBox>)
       }
     </div>
   )
