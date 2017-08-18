@@ -9,13 +9,14 @@ import BreadcrumbContainer from '../container/BreadcrumbContainer'
 import DetailBoxContainer from '../container/DetailBoxContainer'
 import Copyright from './Copyright'
 import BackToTopContainer from '../container/BackToTopContainer'
+import DetailCatalog from './DetailCatalog'
 
 const {
   Header
 } = Layout
 
 
-export default class DetailPage extends React.Component{
+export default class DetailPage extends React.Component {
   componentDidMount() {
     const {
       blog,
@@ -34,6 +35,15 @@ export default class DetailPage extends React.Component{
             <BreadcrumbContainer isBlogDetail blog={blog} />
           </Col>
         </Row>
+
+        <div style={{
+          position: 'fixed',
+          left: 100,
+          top: 100
+        }}>
+          <DetailCatalog />
+        </div>
+
         <br /><br />
         <Row type='flex' justify='center'>
           <Col xs={23} sm={18}>

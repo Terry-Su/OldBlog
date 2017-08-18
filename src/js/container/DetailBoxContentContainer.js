@@ -13,9 +13,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onDetailBoxContentDidMount(detailCatalog) {
-      controller.onDetailBoxContentDidMount(detailCatalog)
-    }
+    
   }
 }
 

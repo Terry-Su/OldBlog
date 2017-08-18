@@ -17,10 +17,10 @@ if (NODE_ENV === 'DEV') {
   app.use(express.static(__dirname))
 
   // // 404
-  // app.use(function (req, res, next) {
-    
-  //   next()
-  // })
+  app.use(function (req, res, next) {
+    res.status(404).redirect(`http://localhost:${NODE_PORT}?p=${req.originalUrl}`)
+    next()
+  })
 
   app.listen(parseInt(NODE_PORT))
 }

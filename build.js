@@ -116,7 +116,7 @@ function getBlogData() {
       }
 
       blogs.push({
-        id: generateId(),
+        id: generateId(name.replace('.html',''), resolvedPath),
         title: name.replace('.html',''),
         path: resolvedPath,
         abstract,
@@ -153,11 +153,8 @@ function getBlogData() {
     return tags
   }
 
-  function generateId() {
-    return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, c => {
-      let r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8
-      return v.toString(16)
-    }) + (new Date().getTime())
+  function generateId(name , path) {
+    return new Buffer(path + '%^&*(' + name).toString('base64')
   }
 
 }

@@ -1,3 +1,4 @@
 export default {
-  cacheDetail: null
+  cacheDetail: null,
+  cacheDetailCatalog: null
 }

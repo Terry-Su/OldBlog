@@ -5,7 +5,6 @@ import {
 } from 'antd'
 import DetailBoxContentContainer from '../container/DetailBoxContentContainer'
 import DetailBoxInfo from './DetailBoxInfo'
-import DetailCatalog from './DetailCatalog'
 
 export default class DetailBox extends React.Component {
   render() {
@@ -19,7 +18,6 @@ export default class DetailBox extends React.Component {
   
     return (
       <div id="detail">
-        <DetailCatalog cacheDetail={cacheDetail}/>
         <h1 id='blog_title' style={{
           textAlign: 'center'
         }}>{ title }</h1>

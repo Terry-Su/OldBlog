@@ -79,10 +79,16 @@ function getDetailCatalogHtml(htmlText) {
         h1 = {}
         h1.name = name
       }
+      
 
       if (tagName === 'H2') {
         h1.h2 = h1.h2 || []
         h1.h2.push(name)
+      }
+
+      // push h1 at last
+      if (i === $('*').length - 1) {
+        Object.keys(h1).length > 0 && detailCatalog.push( Object.assign({}, h1) )
       }
     }
   })

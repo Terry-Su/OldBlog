@@ -30,14 +30,6 @@ class Controller {
 
   onBlogLinkClick(blog) {
     browserHistory.push(`/blog/${blog.id}`)
-    // const self = this
-    // FETCH_BLOG_DETAIL(blog.path)
-    //   .then(response => response.text())
-    //   .then(html => {
-    //     MODIFY_INNERSTATE('cacheDetail', html)
-        
-    //     self.scrollToTop()
-    //   })
   }
 
   onSecondClick({
@@ -63,12 +55,20 @@ class Controller {
       .then(response => response.text())
       .then(html => {
         MODIFY_INNERSTATE('cacheDetail', html)
+        
+        const detailCatalog = self.getDetailCatalogByDom()
+        MODIFY_INNERSTATE('cacheDetailCatalog', detailCatalog)
+        
         self.scrollToTop()
       })
   }
 
-  onDetailBoxMount(detailCatalog) {
-    console.log(detailCatalog)
+  getDetailCatalogByDom() {
+    try {
+      return JSON.parse(document.getElementById('detailCatalogData').innerText)
+    } catch (e) {
+      return null
+    }
   }
 
   resolveUrl() {
@@ -79,7 +79,9 @@ class Controller {
     }
   }
 
-  
+  getState() {
+    return window.getState()
+  }
 
   init() {
     FETCH_BLOG_DATA()
