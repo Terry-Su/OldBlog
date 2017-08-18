@@ -24,7 +24,7 @@ export default function TagPage({ tag }) {
       <Row type='flex' justify='center'>
         <Col xs={1} sm={1} />
         <Col xs={23} sm={23}>
-          <BreadcrumbContainer isTag tag={tag}/>
+          <BreadcrumbContainer />
         </Col>
       </Row>
       <br /><br />

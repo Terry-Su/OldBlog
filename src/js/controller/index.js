@@ -39,21 +39,9 @@ class Controller {
   }
 
   onSecondClick({
-    isCategory,    
-    isTag,
-    text
+    blog
   }) {
-    if (isCategory) {
-      this.onCategoryClick(text)
-    }
-    if (isTag) {
-      this.onTagClick(text)
-    }
-
-    this.scrollToTop()
-  }
-
-  onThirdClick() {
+    this.onCategoryClick(blog.category)
     this.scrollToTop()
   }
 
