@@ -6,6 +6,7 @@ import './sass/ts_markdown.scss'
 
 // polyfill
 import 'babel-polyfill'
+import './js/util/polyfill/Url'
 
 // jquery
 // import jQuery from './js/util/jquery.js'

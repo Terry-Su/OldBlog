@@ -14,7 +14,15 @@ const {
   Header
 } = Layout
 
+
 export default class DetailPage extends React.Component{
+  componentDidMount() {
+    const {
+      blog,
+      onDetailPageDidMount
+    } = this.props
+    onDetailPageDidMount(blog)
+  }
   render() {
     const { blog } = this.props
     return (

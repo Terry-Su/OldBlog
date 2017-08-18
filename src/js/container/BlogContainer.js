@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import controller from '../controller/index'
 
 import Blog from '../component/Blog'
 
@@ -15,6 +16,9 @@ const mapStateToProps = (state, ownProps) => {
 
 function mapDispatchToProps(dispatch) {
   return {
+    resolveUrl() {
+      controller.resolveUrl()
+    }
   }
 }
 
