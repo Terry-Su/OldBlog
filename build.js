@@ -22,10 +22,6 @@ gulp.src(inputPath)
   .pipe(rename(path => { path.extname = '.html' }))
   .pipe(gulp.dest(outputPath))
 
-// check config file in output folders
-// console.log(gulp.src(outputFilesPath))
-
-
 
 // build blog data
 const data = getBlogData()
@@ -156,11 +152,13 @@ function getBlogData() {
 
     return tags
   }
+
+  function generateId() {
+    return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, c => {
+      let r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8
+      return v.toString(16)
+    }) + (new Date().getTime())
+  }
+
 }
 
-function generateId() {
-  return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, c => {
-    let r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8
-    return v.toString(16)
-  }) + (new Date().getTime())
-}

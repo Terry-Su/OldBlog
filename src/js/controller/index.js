@@ -67,6 +67,10 @@ class Controller {
       })
   }
 
+  onDetailBoxMount(detailCatalog) {
+    console.log(detailCatalog)
+  }
+
   resolveUrl() {
     const Url = new URL(window.location.href)
     const param = Url.searchParams.get('p')
@@ -74,6 +78,8 @@ class Controller {
       browserHistory.push(param)
     }
   }
+
+  
 
   init() {
     FETCH_BLOG_DATA()
