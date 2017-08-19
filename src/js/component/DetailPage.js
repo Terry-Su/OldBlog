@@ -10,6 +10,7 @@ import DetailBoxContainer from '../container/DetailBoxContainer'
 import Copyright from './Copyright'
 import BackToTopContainer from '../container/BackToTopContainer'
 import DetailCatalog from './DetailCatalog'
+import CommentBox from './CommentBox'
 
 const {
   Header
@@ -28,6 +29,9 @@ export default class DetailPage extends React.Component {
     const { blog } = this.props
     return (
       <div>
+        <br /><br />
+        <CommentBox />
+        
         <br />
         <Row type='flex' justify='center'>
           <Col xs={1} sm={1} />
@@ -60,6 +64,7 @@ export default class DetailPage extends React.Component {
           </Col>
           <Col xs={1} sm={1}></Col>
         </Row>
+
         <Copyright />
       </div>
     )

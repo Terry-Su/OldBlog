@@ -5,18 +5,32 @@ import thunkMiddleware from 'redux-thunk'
 import { browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux'
 import { createStore, applyMiddleware, combineReducers } from 'redux'
-import { FETCH_BLOG_DATA, FETCH_BLOG_DETAIL } from '../model/index'
+import {
+  FETCH_BLOG_DATA,
+  FETCH_BLOG_DETAIL,
+} from '../model/index'
 import { getBlogReducer } from '../reducer/index'
 import innerStateReducer from '../reducer/innerState'
 import reducers from '../reducer/index'
 import BlogContainer from '../container/BlogContainer'
 import action from '../action/index'
-
 import logger from '../util/logger'
+import marked from '../util/marked'
+import coupleVar from '../store/coupleVar'
+import controllersManager from './controllersManager'
 
 const {
   MODIFY_INNERSTATE
 } = action
+
+const {
+  commentController
+} = controllersManager
+
+
+let {
+  commentUrl
+} = coupleVar
 
 
 class Controller {
@@ -55,10 +69,26 @@ class Controller {
       .then(response => response.text())
       .then(html => {
         MODIFY_INNERSTATE('cacheDetail', html)
-        
+
         const detailCatalog = self.getDetailCatalogByDom()
         MODIFY_INNERSTATE('cacheDetailCatalog', detailCatalog)
-        
+
+        try {
+          const defaultData = self.getDetailDefaultData()
+
+          commentUrl = defaultData.commentUrl
+
+          if (commentUrl) {
+            commentController.updateCacheDetailComments(commentUrl)
+
+            const cacheDetailCommentIssueUrl = commentUrl.replace('api.github.com', 'github.com').replace('repos/', '').replace('/comments', '')
+            MODIFY_INNERSTATE('cacheDetailCommentIssueUrl', cacheDetailCommentIssueUrl)
+          }
+        } catch (e) {
+          console.log(e)
+        }
+
+
         self.scrollToTop()
       })
   }
@@ -68,6 +98,14 @@ class Controller {
       return JSON.parse(document.getElementById('detailCatalogData').innerText)
     } catch (e) {
       return null
+    }
+  }
+
+  getDetailDefaultData() {
+    try {
+      return JSON.parse(document.getElementById('ts_data').innerText)
+    } catch (e) {
+      return {}
     }
   }
 
@@ -81,6 +119,10 @@ class Controller {
 
   getState() {
     return window.getState()
+  }
+
+  marked(unmarkedContent) {
+    return marked(unmarkedContent)
   }
 
   init() {
