@@ -182,4 +182,4 @@ Obviously, iterator makes codes more readable and matainable.
 1. [http://exploringjs.com/es6/ch_iteration.html#sec_iterating-language-constructs](http://exploringjs.com/es6/ch_iteration.html#sec_iterating-language-constructs)  
 2. [https://tc39.github.io/ecma262/#table-1](https://tc39.github.io/ecma262/#table-1)
 
-::: data {"tags": ["es6", "javascript", "iterator"]}
+::: data {"tags": ["es6", "javascript", "iterator"], "createTime": "2017 07 19 22:04", "commentUrl": "https://api.github.com/repos/Terry-Su/Blog/issues/5/comments"}

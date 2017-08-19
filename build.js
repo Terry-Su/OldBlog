@@ -103,14 +103,15 @@ function getBlogData() {
       if (isError) { stat = fs.statSync(path) }
 
       const { ctime } = stat
-      const createTime = ctime
+      let createTime = ctime
 
-      // get tag
+      // get tag and createTime
       const { window } = new JSDOM(htmlTxt)
       try {
         const dataDom = window.document.getElementById('ts_data')
         const data = JSON.parse(dataDom.innerHTML)
         tags = data.tags
+        createTime = (data.createTime ? new Date(data.createTime) : null) || createTime
       } catch (e) {
 
       }

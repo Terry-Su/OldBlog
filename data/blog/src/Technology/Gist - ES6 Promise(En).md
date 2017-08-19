@@ -77,4 +77,4 @@ testPromise
 # Conclusion
 There must be lots of ways to synchronize asynchronous methods, however, it's more convenient if a standard emerges so we can build robust program more easily.Obviously, promise is an ideal standard.
 
-::: data {"tags": ["es6", "javascript", "promise"]}
+::: data {"tags": ["es6", "javascript", "promise"], "createTime": "2017 07 12 16:25", "commentUrl": "https://api.github.com/repos/Terry-Su/Blog/issues/4/comments"}

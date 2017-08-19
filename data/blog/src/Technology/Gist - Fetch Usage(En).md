@@ -60,4 +60,4 @@ Promise.all([
 Fetch, well done!
 
 
-::: data {"tags": ["fetch","javascript"]}
+::: data {"tags": ["fetch","javascript"], "createTime": "2017 08 03 19:36", "commentUrl": "https://api.github.com/repos/Terry-Su/Blog/issues/2/comments"}

@@ -12,4 +12,4 @@
 ## title24
 ## title25
 
-::: data {"tags": ["fetch","javascript"], "commentUrl": "https://api.github.com/repos/Terry-Su/Blog/issues/1/comments"}
+::: data {"tags": [], "commentUrl": "https://api.github.com/repos/Terry-Su/Blog/issues/1/comments"}

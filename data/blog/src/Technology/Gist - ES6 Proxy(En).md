@@ -48,4 +48,4 @@ lightState.open = false    // output: Light off!
 Try Proxy? Trust it at first
 
 
-::: data {"tags": ["es6", "javascript", "proxy"]}
+::: data {"tags": ["es6", "javascript", "proxy"], "createTime": "2017 07 08 18:53", "commentUrl": "https://api.github.com/repos/Terry-Su/Blog/issues/3/comments"}
