@@ -3,9 +3,7 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
 import { browserHistory } from 'react-router'
-import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux'
 import { createStore, applyMiddleware } from 'redux'
-
 
 import { getBlogReducer, getTotalReducer } from '../reducer/index'
 import innerStateReducer from '../reducer/innerState'
@@ -148,9 +146,13 @@ class Controller {
 
   resolveUrl() {
     const Url = new URL(window.location.href)
-    const param = Url.searchParams.get('p')
-    if (param) {
-      browserHistory.push(param)
+    try {
+      const param = Url.searchParams.get('p')
+      if (param) {
+        browserHistory.push(param)
+      }
+    } catch (e) {
+      console.log(e)
     }
   }
 
@@ -172,19 +174,14 @@ class Controller {
       .then(blogData => {
         const blogReducer = getBlogReducer(blogData)
 
-        // const reducer = combineReducers({
         const reducer = getTotalReducer({
           innerState: innerStateReducer,
           blog: blogReducer,
-          // routing: routerReducer,
         })
 
-        const ReduxStore = createStore(reducer, applyMiddleware(logger, thunkMiddleware, setStateToLocalStore))
+        const ReduxStore = createStore(reducer, applyMiddleware(thunkMiddleware, setStateToLocalStore))
 
         const getState = () => ReduxStore.getState()
-
-        // crate history
-        // const history = syncHistoryWithStore(browserHistory, ReduxStore)
 
         // export global varibles
         exportGlobal({
@@ -194,13 +191,12 @@ class Controller {
 
         render(
           <Provider store={ReduxStore}>
-            {/* <Blog history={history} /> */}
             <Blog />
           </Provider>,
           document.getElementById('app')
         )
 
-        
+
       })
   }
 }

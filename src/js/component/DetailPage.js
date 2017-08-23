@@ -43,7 +43,7 @@ class DetailPage extends React.Component {
               <Grid item xs={7} style={{
                 padding: '0 0 0 2em'
               }}>
-                <Breadcrumb />
+                <Breadcrumb isBlogDetail blog={blog} />
               </Grid>
               <Grid item container xs={5} justify='flex-end' align='center'>
                 <div

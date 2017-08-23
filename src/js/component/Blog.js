@@ -8,15 +8,12 @@ import {
 } from 'react-router'
 import { connect } from 'react-redux'
 
-import { withThem } from 'material-ui/styles';
-
 import controller from '../controller/index'
-
-import { getThemeSetting } from '../style/theme'
 
 import withGlobalTheme from '../util/componentHelper/withGlobalTheme'
 
 
+import UpdateBodyBackGroundColor from './UpdateBodyBackGroundColor'
 import HomePage from './HomePage'
 import ListPage from './ListPage'
 import TagPage from './TagPage'
@@ -28,56 +25,68 @@ class Blog extends React.Component {
   componentDidMount() {
     const {
       resolveUrl,
-      updateBodyBackGroundColor,
-      themeSetting
     } = this.props
 
     resolveUrl()
-    updateBodyBackGroundColor(themeSetting.backgroundColor)
   }
   render() {
     const {
-      history,
       catalog,
       tags,
       blogs,
-      cacheDetail,
       themeSetting
     } = this.props
 
     return (
-        <div>
-          <Router history={browserHistory}>
-            <div>
-              <Route exact path="/" component={HomePage} ></Route>
-              <Route path="/list" component={ListPage} />
-              <Route path="/detail" component={DetailPage} />
-              {
-                // List page - category
-                catalog.map((category, index) => {
-                  const targetListPage = () => <ListPage category={category} />
-                  return <Route key={index} path={`/${category}`} component={targetListPage} />
-                })
-              }
-              {
-                // Tag page - tag
-                tags.map((tag, index) => {
-                  const targetTagPage = () => <TagPage tag={tag} />
-                  return <Route key={index} path={`/tag/${tag}`} component={targetTagPage} />
-                })
-              }
-              {
-                // Blog detail page
-                blogs.map((blog, index) => {
-                  const targetDetailPage = () => <DetailPage blog={blog} />
-                  return <Route key={index} path={`/blog/${blog.id}`} component={targetDetailPage} />
-                })
-              }
-            </div>
-          </Router>
-        </div>
+      <div>
+        <UpdateBodyBackGroundColor />
+        
+        <Router history={browserHistory} routes={getRoutes({
+          catalog,
+          tags,
+          blogs
+        })}>
+
+        </Router>
+      </div>
     )
   }
+}
+
+function getRoutes({
+  catalog,
+  tags,
+  blogs
+}) {
+  return (
+    <Route>
+      <Route exact path="/" component={HomePage} ></Route>
+
+      {
+        // List page - category
+        catalog.map((category, index) => {
+          const targetListPage = () => <ListPage category={category} />
+          return <Route key={index} path={`/${category}`} component={targetListPage} />
+        })
+      }
+
+      {
+        // Tag page - tag
+        tags.map((tag, index) => {
+          const targetTagPage = () => <TagPage tag={tag} />
+          return <Route key={index} path={`/tag/${tag}`} component={targetTagPage} />
+        })
+      }
+
+      {
+        // Blog detail page
+        blogs.map((blog, index) => {
+          const targetDetailPage = () => <DetailPage blog={blog} />
+          return <Route key={index} path={`/blog/${blog.id}`} component={targetDetailPage} />
+        })
+      }
+    </Route>
+  )
 }
 
 export default withGlobalTheme(
@@ -102,7 +111,6 @@ export default withGlobalTheme(
         catalog,
         tags,
         blogs,
-        themeSetting: getThemeSetting(theme)
       }
     },
     (dispatch, ownProps) => {
@@ -110,10 +118,6 @@ export default withGlobalTheme(
         resolveUrl() {
           controller.resolveUrl()
         },
-
-        updateBodyBackGroundColor(backgroundColor) {
-          controller.updateBodyBackGroundColor(backgroundColor)
-        }
       }
     }
   )(Blog)

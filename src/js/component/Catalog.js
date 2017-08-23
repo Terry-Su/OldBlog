@@ -85,8 +85,17 @@ class Catalog extends Component {
 
 export default connect(
   (state, ownProps) => {
+    const {
+      catalog
+    } = state.blog
+    const sortedCatalog = catalog.sort((a, b) => {
+      if (b === 'Technology') {
+        return 1
+      }
+      return -1
+    })
     return {
-      catalog: state.blog.catalog
+      catalog: sortedCatalog
     }
   },
   (dispatch, ownProps) => {

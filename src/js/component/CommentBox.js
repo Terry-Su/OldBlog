@@ -34,7 +34,7 @@ class CommentBox extends React.Component {
             ({
               zh:
               <span>
-                Github上
+                在Github上
                 <a href={detailCommentIssueUrl}>
                   此博客的评论话题
                 </a>
