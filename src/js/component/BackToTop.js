@@ -1,10 +1,14 @@
 import React from 'react'
-import {  
+import { connect } from 'react-redux'
+
+import controller from '../controller/index'
+
+import {
   Avatar
 } from 'antd'
 
 
-export default class BackToTop extends React.Component {
+class BackToTop extends React.Component {
   onBackToTopClick = (e) => {
     this.props.onBackToTopClick()
   }
@@ -20,3 +24,18 @@ export default class BackToTop extends React.Component {
     )
   }
 }
+
+
+export default connect(
+  (state, ownProps) => {
+    return {
+    }
+  },
+  (dispatch, ownProps) => {
+    return {
+      onBackToTopClick() {
+        controller.scrollToTop()
+      }
+    }
+  }
+)(BackToTop)

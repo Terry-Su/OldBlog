@@ -6,15 +6,18 @@ import {
   IndexRoute,
   browserHistory
 } from 'react-router'
+import { connect } from 'react-redux'
+
+import controller from '../controller/index'
 
 import HomePage from './HomePage'
 import ListPage from './ListPage'
 import TagPage from './TagPage'
-import DetailPageContainer from '../container/DetailPageContainer'
+import DetailPage from './DetailPage'
 import LaboratoryPage from './LaboratoryPage'
 
 
-export default class Blog extends React.Component {
+class Blog extends React.Component {
   componentDidMount() {
     const { resolveUrl } = this.props
     resolveUrl()
@@ -26,7 +29,7 @@ export default class Blog extends React.Component {
         <div>
           <Route exact path="/" component={HomePage} ></Route>
           <Route path="/list" component={ListPage} />
-          <Route path="/detail" component={DetailPageContainer} />
+          <Route path="/detail" component={DetailPage} />
           {
             // List page - category
             catalog.map((category, index) => {
@@ -44,7 +47,7 @@ export default class Blog extends React.Component {
           {
             // Blog detail page
             blogs.map((blog, index) => {
-              const targetDetailPage = () => <DetailPageContainer blog={blog} />
+              const targetDetailPage = () => <DetailPage blog={blog} />
               return <Route key={index} path={`/blog/${blog.id}`} component={targetDetailPage} />
             })
           }
@@ -53,3 +56,22 @@ export default class Blog extends React.Component {
     )
   }
 }
+
+export default connect(
+  (state, ownProps) => {
+    const { blog, innerState } = state
+    const { catalog, tags, blogs } = blog
+    return {
+      catalog,
+      tags,
+      blogs
+    }
+  },
+  (dispatch, ownProps) => {
+    return {
+      resolveUrl() {
+        controller.resolveUrl()
+      }
+    }
+  }
+)(Blog)

@@ -5,7 +5,7 @@ import {
   Layout,
 } from 'antd'
 
-import BreadcrumbContainer from '../container/BreadcrumbContainer'
+import Breadcrumb from './Breadcrumb'
 import DetailBox from './DetailBox'
 import Copyright from './Copyright'
 
@@ -19,7 +19,7 @@ export default function LaboratoryPage() {
       <Header style={{
         backgroundColor: 'white'
       }}>
-        <BreadcrumbContainer />
+        <Breadcrumb />
       </Header>
       <Row type='flex' justify='center'>
         <Col xs={23} sm={12}>

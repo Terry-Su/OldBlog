@@ -12,7 +12,7 @@ import {
 import { getBlogReducer } from '../reducer/index'
 import innerStateReducer from '../reducer/innerState'
 import reducers from '../reducer/index'
-import BlogContainer from '../container/BlogContainer'
+import Blog from '../component/Blog'
 import action from '../action/index'
 import logger from '../util/logger'
 import marked from '../util/marked'
@@ -144,7 +144,7 @@ class Controller {
 
         render(
           <Provider store={ReduxStore}>
-            <BlogContainer history={history} />
+            <Blog history={history} />
           </Provider>,
           document.getElementById('app')
         )

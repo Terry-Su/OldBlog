@@ -1,14 +1,18 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
+import controller from '../controller/index'
+
 import {
   Col,
   Row,
   Layout,
 } from 'antd'
 
-import BreadcrumbContainer from '../container/BreadcrumbContainer'
-import DetailBoxContainer from '../container/DetailBoxContainer'
+import Breadcrumb from './Breadcrumb'
+import DetailBox from './DetailBox'
 import Copyright from './Copyright'
-import BackToTopContainer from '../container/BackToTopContainer'
+import BackToTop from './BackToTop'
 import DetailCatalog from './DetailCatalog'
 import CommentBox from './CommentBox'
 
@@ -17,7 +21,7 @@ const {
 } = Layout
 
 
-export default class DetailPage extends React.Component {
+class DetailPage extends React.Component {
   componentDidMount() {
     const {
       blog,
@@ -36,7 +40,7 @@ export default class DetailPage extends React.Component {
         <Row type='flex' justify='center'>
           <Col xs={1} sm={1} />
           <Col xs={23} sm={23}>
-            <BreadcrumbContainer isBlogDetail blog={blog} />
+            <Breadcrumb isBlogDetail blog={blog} />
           </Col>
         </Row>
 
@@ -45,13 +49,13 @@ export default class DetailPage extends React.Component {
           left: 100,
           top: 100
         }}>
-          <DetailCatalog />
+          {/* <DetailCatalog /> */}
         </div>
 
         <br /><br />
         <Row type='flex' justify='center'>
           <Col xs={23} sm={18}>
-            <DetailBoxContainer blog={blog} />
+            <DetailBox blog={blog} />
           </Col>
         </Row>
         <Row style={{
@@ -60,7 +64,7 @@ export default class DetailPage extends React.Component {
           <Col span={22} style={{
             textAlign: 'right'
           }}>
-            <BackToTopContainer />
+            <BackToTop />
           </Col>
           <Col xs={1} sm={1}></Col>
         </Row>
@@ -70,3 +74,18 @@ export default class DetailPage extends React.Component {
     )
   }
 }
+
+
+export default connect(
+  (state, ownProps) => {
+    return {
+    }
+  },
+  (dispatch, ownProps) => {
+    return {
+      onDetailPageDidMount(blog) {
+        controller.onDetailPageDidMount(blog)
+      }
+    }
+  }
+)(DetailPage)

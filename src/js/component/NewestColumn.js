@@ -1,4 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
+import controller from '../controller/index'
 
 import {
   Card,
@@ -10,7 +13,7 @@ import {
 import NewestColumnItem from './NewestColumnItem'
 
 
-export default function NewestColumn({ blogs, onTitleClick }) {
+function NewestColumn({ blogs, onTitleClick }) {
   return (
     <div>
       <Card title={
@@ -27,3 +30,20 @@ export default function NewestColumn({ blogs, onTitleClick }) {
     </div>
   )
 }
+
+
+export default connect(
+  (state, ownProps) => {
+    return {
+      title: state.blog.NewestColumnTitle,
+      blogs: state.blog.blogs
+    }
+  },
+  (dispatch, ownProps) => {
+    return {
+      onTitleClick(blog) {
+        controller.onBlogLinkClick(blog)
+      }
+    }
+  }
+)(NewestColumn)

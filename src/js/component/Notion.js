@@ -1,4 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
+import controller from '../controller/index'
+
 import {
   Layout
 } from 'antd'
@@ -7,7 +11,7 @@ const {
   Header
 } = Layout
 
-export default function Notion( {blogTitle} ) {
+function Notion( {blogTitle} ) {
   return (
     <div>
       <Header style={{
@@ -22,3 +26,17 @@ export default function Notion( {blogTitle} ) {
     </div>
   )
 }
+
+
+export default connect(
+  (state, ownProps) => {
+    return {
+      blogTitle: state.blog.blogTitle
+    }
+  },
+  (dispatch, ownProps) => {
+    return {
+
+    }
+  }
+)(Notion)

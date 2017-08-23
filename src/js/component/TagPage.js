@@ -5,9 +5,9 @@ import {
   Layout,
 } from 'antd'
 
-import BreadcrumbContainer from '../container/BreadcrumbContainer'
-import CatalogContainer from '../container/CatalogContainer'
-import ListBoxContainer from '../container/ListBoxContainer'
+import Breadcrumb from './Breadcrumb'
+import Catalog from './Catalog'
+import ListBoxContainer from './ListBoxContainer'
 import Copyright from './Copyright'
 
 
@@ -24,7 +24,7 @@ export default function TagPage({ tag }) {
       <Row type='flex' justify='center'>
         <Col xs={1} sm={1} />
         <Col xs={23} sm={23}>
-          <BreadcrumbContainer />
+          <Breadcrumb />
         </Col>
       </Row>
       <br /><br />
@@ -32,7 +32,7 @@ export default function TagPage({ tag }) {
         <Col xs={0} sm={1}/>
         <Col xs={23} sm={6}>
           <br />
-          <CatalogContainer isTag tag={tag} />
+          <Catalog isTag tag={tag} />
         </Col>
         <Col xs={0} sm={1}></Col>
         <Col xs={23} sm={12}>

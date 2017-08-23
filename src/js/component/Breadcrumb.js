@@ -1,10 +1,13 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-import { Breadcrumb as AntdBreadcrumb } from 'antd';
+import controller from '../controller/index'
+
+import { Breadcrumb as AntdBreadcrumb } from 'antd'
 
 
 
-export default function Breadcrumb({ blog, isBlogDetail, onHomeClick, onSecondClick }) {
+function Breadcrumb({ blog, isBlogDetail, onHomeClick, onSecondClick }) {
   const second = {
     blog
   }
@@ -21,3 +24,25 @@ export default function Breadcrumb({ blog, isBlogDetail, onHomeClick, onSecondCl
     </div>
   )
 }
+
+export default connect(
+  (state, ownProps) => {
+    return {
+    }
+  },
+  (dispatch, ownProps) => {
+    return {
+      onHomeClick() {
+        controller.onHomeClick()
+      },
+
+      onSecondClick(info) {
+        controller.onSecondClick(info)
+      },
+
+      onThirdClick(info) {
+        controller.onThirdClick(info)
+      }
+    }
+  }
+)(Breadcrumb)

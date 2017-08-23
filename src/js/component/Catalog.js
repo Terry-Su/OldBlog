@@ -1,10 +1,14 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
+import controller from '../controller/index'
+
 import { Menu } from 'antd'
 
-import TagsContainer from '../container/TagsContainer'
+import TagsContainer from './TagsContainer'
 
 
-export default class Catalog extends React.Component {
+class Catalog extends React.Component {
   render() {
     const { catalog, category: activeCategory, isCategory, tag, isTag, onCategoryClick } = this.props
     const activeCategoryKey = '' + catalog.indexOf(activeCategory)
@@ -33,3 +37,18 @@ export default class Catalog extends React.Component {
   }
 }
 
+
+export default connect(
+  (state, ownProps) => {
+    return {
+      catalog: state.blog.catalog
+    }
+  },
+  (dispatch, ownProps) => {
+    return {
+      onCategoryClick(category) {
+        controller.onCategoryClick(category)
+      }
+    }
+  }
+)(Catalog)
