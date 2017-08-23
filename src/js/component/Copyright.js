@@ -1,20 +1,18 @@
 import React from 'react'
 
-import {
-  Layout
-} from 'antd'
+import Paper from 'material-ui/Paper'
 
-const {
-  Footer
-} = Layout
 
 export default function Copyright() {
   return (
-    <Footer style={{ 
+    <Paper id="copyright" style={{
+      background: 'none',
       textAlign: 'center',
-      padding: '100px 0 20px 0'
-       }}>
+      padding: '0.2em 0 0.6em 0',
+      fontSize: '12px',
+      color: '#666'
+    }}>
       Copyright © 2017 TERRY SU ALL RIGHTS RESERVED
-    </Footer>
+    </Paper>
   )
 } 

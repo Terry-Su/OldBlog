@@ -1,8 +1,12 @@
 import React from 'react'
-import moment from 'moment'
 import { connect } from 'react-redux'
+import moment from 'moment'
+
+import { withTheme } from 'material-ui/styles'
+
 import controller from '../controller/index'
 
+import Comment from './Comment'
 
 
 class CommentBox extends React.Component {
@@ -15,42 +19,21 @@ class CommentBox extends React.Component {
 
     return (
       <div>
-        {
-          detailCommentIssueUrl && (
-            <h3>
-              Want to leave a comment? Visit <a href={detailCommentIssueUrl} >this post's issue page</a> on GitHub (you'll need a GitHub account).
-            </h3>
-          )
-        }
+        <h3 style={{
+          paddingBottom: '1em',
+          fontSize: '16px'
+        }}>
+          Want to leave a comment? Visit <a href={detailCommentIssueUrl}>this post's issue page</a> on GitHub (you'll need a GitHub account).
+      </h3>
 
         {
-          commentInfos && commentInfos.map((commentInfo, index) => {
-            const {
-              userName,
-              userHome,
-              avatarSrc,
-              content,
-              createTime
-            } = commentInfo
-            return (
-              <div key={index}>
-                <img src={avatarSrc} width={100} height={100} />
-                <span>
-                  <div>
-                    <b>
-                      <a href={userHome}>{userName}</a>
-                    </b>
-                    <span>commented on {moment(createTime).format()} • edited</span>
-                  </div>
-                  <div className="ts_comment" dangerouslySetInnerHTML={{
-                    __html: content
-                  }}>
-                  </div>
-                </span>
-              </div>
-            )
-
-          })
+          commentInfos && commentInfos.map((commentInfo, i) => (
+            <div key={i} style={{
+              margin: '0 0 2em 0'
+            }}>
+              <Comment key={i} commentInfo={commentInfo} />
+            </div>
+          ))
         }
 
       </div>
@@ -105,4 +88,4 @@ export default connect(
 
     }
   }
-)(CommentBox)
+)(withTheme(CommentBox))

@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import Button from 'material-ui/Button'
+import { withTheme } from 'material-ui/styles'
+
 import controller from '../controller/index'
 
-import {
-  Avatar
-} from 'antd'
 
 
 class BackToTop extends React.Component {
@@ -14,12 +14,25 @@ class BackToTop extends React.Component {
   }
 
   render() {
+    const {
+      theme
+    } = this.props
+
     return (
       <div>
-        <Avatar size="large" icon="to-top" style={{
-          color: 'white',
-          background: '#50aef2'
-        }} onClick={this.onBackToTopClick} />
+        <Button
+          disableRipple
+          style={{
+            color: theme.backToTop.color,
+            background: 'none',
+            padding: '1em',
+          }}
+          children={
+            <span onClick={this.onBackToTopClick}>
+              Back To Top
+              </span>
+          }
+        />
       </div>
     )
   }
@@ -38,4 +51,4 @@ export default connect(
       }
     }
   }
-)(BackToTop)
+)(withTheme(BackToTop))

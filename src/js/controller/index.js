@@ -12,11 +12,17 @@ import {
 import { getBlogReducer } from '../reducer/index'
 import innerStateReducer from '../reducer/innerState'
 import reducers from '../reducer/index'
+
 import Blog from '../component/Blog'
+
 import action from '../action/index'
+
+import { getTheme } from '../selector/index'
+
 import logger from '../util/logger'
 import marked from '../util/marked'
 import coupleVar from '../store/coupleVar'
+
 import controllersManager from './controllersManager'
 
 const {
@@ -24,8 +30,18 @@ const {
 } = action
 
 const {
-  commentController
+  commentController,
+  styleController
 } = controllersManager
+
+const {
+  updateCacheDetailComments
+} = commentController
+
+const {
+  updateBodyBackGroundColor,
+  autoSwitchTheme
+} = styleController
 
 
 let {
@@ -59,6 +75,10 @@ class Controller {
     this.scrollToTop()
   }
 
+  onThemeBtnClick() {
+    autoSwitchTheme()
+  }
+
   scrollToTop() {
     window.scrollTo(0, 0)
   }
@@ -79,7 +99,7 @@ class Controller {
           commentUrl = defaultData.commentUrl
 
           if (commentUrl) {
-            commentController.updateCacheDetailComments(commentUrl)
+            updateCacheDetailComments(commentUrl)
 
             const cacheDetailCommentIssueUrl = commentUrl.replace('api.github.com', 'github.com').replace('repos/', '').replace('/comments', '')
             MODIFY_INNERSTATE('cacheDetailCommentIssueUrl', cacheDetailCommentIssueUrl)
@@ -117,6 +137,10 @@ class Controller {
     }
   }
 
+  updateBodyBackGroundColor(backgroundColor) {
+    updateBodyBackGroundColor(backgroundColor)
+  }
+
   getState() {
     return window.getState()
   }
@@ -140,11 +164,12 @@ class Controller {
         window.getState = () => window.ReduxStore.getState()
 
         // crate history
-        const history = syncHistoryWithStore(browserHistory, ReduxStore)
+        // const history = syncHistoryWithStore(browserHistory, ReduxStore)
 
         render(
           <Provider store={ReduxStore}>
-            <Blog history={history} />
+            {/* <Blog history={history} /> */}
+            <Blog />
           </Provider>,
           document.getElementById('app')
         )

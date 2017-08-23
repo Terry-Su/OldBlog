@@ -1,32 +1,52 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+
 import controller from '../controller/index'
 
-import {
-  Card,
-  Col,
-  Row,
-  Menu
-} from 'antd'
+import Paper from 'material-ui/Paper'
+import Typography from 'material-ui/Typography'
+import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List'
+import { withTheme } from 'material-ui/styles'
 
 import NewestColumnItem from './NewestColumnItem'
 
 
-function NewestColumn({ blogs, onTitleClick }) {
+function NewestColumn({ blogs, onTitleClick, theme }) {
   return (
     <div>
-      <Card title={
-        <h3 style={{
-          textAlign: 'center'
-        }}>The newest</h3>
-      } noHovering bordered={false}>
-      {
-        blogs.map((blog, index) => (
-          <NewestColumnItem key={index} blog={blog} onClick={() => {onTitleClick(blog)}}></NewestColumnItem>
-        ))
-      }
-      </Card>
+      <Paper style={{
+        background: 'none'
+      }}>
+        <div
+          style={{
+            textAlign: 'center',
+            padding: '1em 0 1em 0',
+            borderBottom: `1px solid ${theme.newestColumn.lineColor}`,
+          }}>
+          <Typography type='title' style={{
+            color: theme.newestColumn.titleColor
+          }} >
+            The newest
+        </Typography>
+        </div>
+
+        <div
+          style={{
+            padding: '1em 0 0 0'
+          }}
+          children={
+            <List>
+              {
+                blogs.map((blog, i) => (
+                  <NewestColumnItem key={i} blog={blog} onTitleClick={onTitleClick} >
+                  </NewestColumnItem>
+                ))
+              }
+            </List>
+          }
+        />
+      </Paper>
     </div>
   )
 }
@@ -34,9 +54,13 @@ function NewestColumn({ blogs, onTitleClick }) {
 
 export default connect(
   (state, ownProps) => {
+    const {
+      blogs
+    } = state.blog
+    const sortedBlogs = blogs.slice(0, 5)
     return {
       title: state.blog.NewestColumnTitle,
-      blogs: state.blog.blogs
+      blogs: sortedBlogs
     }
   },
   (dispatch, ownProps) => {
@@ -46,4 +70,4 @@ export default connect(
       }
     }
   }
-)(NewestColumn)
+)(withTheme(NewestColumn))

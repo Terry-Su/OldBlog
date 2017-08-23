@@ -1,8 +1,10 @@
 import commentController from './commentController'
+import styleController from './styleController/index'
 
 
 const controllersManager = {
-  commentController
+  commentController,
+  styleController
 }
 
 export default controllersManager

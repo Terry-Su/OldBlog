@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import controller from '../controller/index'
-import DetailBox from '../component/DetailBox'
+import DetailBoxContent from '../component/DetailBoxContent'
 
 const mapStateToProps = (state, ownProps) => {
   const { innerState } = state
@@ -12,7 +12,6 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = dispatch => {
-
   return {
     
   }
@@ -20,4 +19,4 @@ const mapDispatchToProps = dispatch => {
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(DetailBox)
+export default connect(mapStateToProps, mapDispatchToProps)(DetailBoxContent)

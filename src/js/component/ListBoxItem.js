@@ -1,14 +1,33 @@
 import React from 'react'
 
+import Paper from 'material-ui/Paper'
+import Typography from 'material-ui/Typography'
+import { withTheme } from 'material-ui/styles'
 
-export default function ListBoxItem({ blog, onClick }) {
+
+function ListBoxItem({
+  blog,
+  onClick,
+  theme,
+}) {
   return (
-    <div onClick={onClick}>
-      <h1>{blog.title}</h1>
-      <br />
-      <p style={{
-        color: 'grey'
-      }}>{blog.abstract}</p>
-    </div>
+    <Paper style={{
+      background: 'none'
+    }}>
+      <Typography type="headline" component="h3" style={{
+        padding: '10px 0',
+        color: theme.listBox.titleColor
+      }} onClick={onClick}>
+       {blog.title}
+      </Typography>
+      <Typography type="caption" component="p" style={{
+        color: theme.listBox.color
+      }}>
+        {blog.abstract}
+      </Typography>
+    </Paper>
   )
 }
+
+
+export default withTheme(ListBoxItem)

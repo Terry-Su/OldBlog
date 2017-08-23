@@ -1,29 +1,26 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import Paper from 'material-ui/Paper'
+
 import controller from '../controller/index'
 
-import {
-  Layout
-} from 'antd'
 
-const {
-  Header
-} = Layout
-
-function Notion( {blogTitle} ) {
+function Notion({ blogTitle }) {
   return (
     <div>
-      <Header style={{
-        backgroundColor: 'white'
+      <Paper style={{
+        background: 'none',
+        padding: '1em 0 0 3em'
       }}>
         <h1 style={{
           color: 'black'
         }}>
-          { blogTitle }
+          {blogTitle}
         </h1>
-      </Header>
+      </Paper>
     </div>
+
   )
 }
 

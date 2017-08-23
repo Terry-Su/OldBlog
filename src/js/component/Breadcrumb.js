@@ -1,27 +1,66 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import Grid from 'material-ui/Grid'
+import Typography from 'material-ui/Typography'
+import { withTheme } from 'material-ui/styles'
+
 import controller from '../controller/index'
 
-import { Breadcrumb as AntdBreadcrumb } from 'antd'
 
 
 
-function Breadcrumb({ blog, isBlogDetail, onHomeClick, onSecondClick }) {
+function Breadcrumb({
+  blog,
+  isBlogDetail,
+  onHomeClick,
+  onSecondClick,
+  theme
+}) {
   const second = {
     blog
   }
   return (
     <div>
-      <AntdBreadcrumb>
-        <AntdBreadcrumb.Item>
-          <span onClick={onHomeClick}><a href="javascript:void(0)">Home</a></span>
-        </AntdBreadcrumb.Item>
-        {
-          isBlogDetail && <AntdBreadcrumb.Item><a href="javascript:void(0)" onClick={() => onSecondClick(second)}>{second.blog.category}</a></AntdBreadcrumb.Item>
-        }
-      </AntdBreadcrumb>
-    </div>
+      <Grid container>
+        <Grid item md={12}>
+          <Typography
+            onClick={onHomeClick}
+            style={{
+              display: 'inline-block',
+            }} type='body2'>
+            <a href="javascript:void(0)" style={{
+              color: theme.breadcrumb.color
+            }}>
+              Home
+            </a>
+          </Typography>
+
+          {
+            isBlogDetail && (
+              <span>
+                <Typography style={{
+                  display: 'inline-block'
+                }} type='caption'>&nbsp;&nbsp;/&nbsp;&nbsp;</Typography>
+                <Typography style={{
+                  display: 'inline-block',
+                }} type='body2'>
+                  <b>
+                    <a href="javascript:void(0)" style={{
+                      color: theme.breadcrumb.color
+                    }}
+                      onClick={() => onSecondClick(second)}>{second.blog.category}</a>
+                  </b>
+                </Typography>
+              </span>
+            )
+          }
+
+
+
+        </Grid>
+      </Grid>
+    </div >
   )
 }
 
@@ -45,4 +84,4 @@ export default connect(
       }
     }
   }
-)(Breadcrumb)
+)(withTheme(Breadcrumb))

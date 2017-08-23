@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
+
+import Typography from 'material-ui/Typography'
+import { withTheme } from 'material-ui/styles'
+
 import controller from '../controller/index'
 
 
-
-class DetailCatalog extends React.Component {
+class DetailCatalog extends Component {
   onH1Click(index) {
     this.props.onH1Click(index)
   }
@@ -12,19 +15,33 @@ class DetailCatalog extends React.Component {
     this.props.onH2Click(h1Index, h2Index)
   }
   render() {
-    const { cacheDetailCatalog } = this.props
+    const {
+      theme
+    } = this.props
+
     return (
-      <div id="detailCatalog">
+      <div id="detailCatalog" style={{
+        padding: '2em'
+      }}>
         {
           cacheDetailCatalog && cacheDetailCatalog.map((h1Info, index1) => (
-            <div key={index1}>
-              <h1 onClick={() => this.onH1Click(index1)} >
-                {h1Info.name}
-              </h1>
+            <div key={i}>
+              <div style={{
+                fontSize: '14px',
+                padding: '0.8em 0 0 0',
+                color: theme.detailCatalog.titleColor
+              }}>
+                <b onClick={() => this.onH1Click(index1)}>{h1Info.name}</b>
+              </div>
               {
                 h1Info.h2 && h1Info.h2.map((h2Info, index2) => (
-                  <h2 key={index2} onClick={() => this.onH2Click(index1, index2)}>
-                    {h2Info}
+                  <h2 key={i} style={{
+                    fontSize: '14px',
+                    padding: '0.2em 0 0 1em',
+                    color: theme.detailCatalog.color,
+                  }}
+                    onClick={() => this.onH2Click(index1, index2)}>
+                    {h2Info.name}
                   </h2>
                 ))
               }
@@ -35,6 +52,7 @@ class DetailCatalog extends React.Component {
     )
   }
 }
+
 
 
 export default connect(
@@ -55,7 +73,7 @@ export default connect(
       }
     }
   }
-)(DetailCatalog)
+)(withTheme(DetailCatalog))
 
 function get$detailContent() {
   return $('#detail .highlight')

@@ -1,42 +1,60 @@
-import React from 'react'
+import React, { Component } from 'react'
 import moment from 'moment'
-import {
-  Col,
-  Row
-} from 'antd'
+import { connect } from 'react-redux'
 
-export default function NewestColumnItem({ blog, onClick }) {
-  return (
-    <div style={{
-      padding: '10px 0 10px 0'
-    }} onClick={onClick}>
+import Grid from 'material-ui/Grid'
+import Hidden from 'material-ui/Hidden'
+import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List'
+import { withTheme } from 'material-ui/styles'
 
-      <Row>
-        <Col xs={24} sm={0} style={{
-          textAlign: 'center'
-        }}>
-          <a href="javascript:void(0)">
-            <h3 style={{
-              display: 'inline',
-            }}>{blog.title}</h3>
-          </a>
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={0} sm={24}>
-          <a href="javascript:void(0)">
-            <span style={{
-              paddingLeft: '20px',
-              color: '#555'
-            }}>{moment(blog.createTime).format('YYYY/MM/DD')}</span>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <h3 style={{
-              display: 'inline',
-            }}>{blog.title}</h3>
-          </a>
-        </Col>
-      </Row>
 
-    </div>
-  )
+class NewestColumnItem extends Component {
+  render() {
+    const {
+      blog,
+      onTitleClick,
+      theme
+    } = this.props
+
+    return (
+      <ListItem onClick={() => { onTitleClick(blog) }}>
+        <Grid container>
+          <Grid item xs={4} style={{
+            textAlign: 'center',
+          }}>
+            <a style={{
+              color: theme.newestColumn.timeColor
+            }}>
+              <Hidden only={['sm', 'xs']}>
+                <span>{moment(blog.createTime).format('YYYY/')}</span>
+              </Hidden>
+              {moment(blog.createTime).format('MM/DD')}
+            </a>
+          </Grid>
+          <Grid item xs={8}>
+            <a style={{
+              color: theme.newestColumn.color
+            }}>
+              {blog.title}
+            </a>
+          </Grid>
+        </Grid>
+      </ListItem>
+    )
+  }
+
 }
+
+
+export default connect(
+  (state, ownProps) => {
+    return {
+
+    }
+  },
+  (dispatch, ownProps) => {
+    return {
+
+    }
+  }
+)(withTheme(NewestColumnItem))

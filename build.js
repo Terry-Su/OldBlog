@@ -124,7 +124,7 @@ function getBlogData() {
         createTime,
         tags,
         category,
-        repostNotice: '本文为原创文章，转载请注明出处',
+        repostNotice: 'This article is original, reprint please indicate the source',
         content: null
       })
 

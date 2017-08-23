@@ -8,7 +8,7 @@ import {
   Row
 } from 'antd'
 import DetailBoxContentContainer from './DetailBoxContentContainer'
-import DetailBoxInfo from './DetailBoxInfo'
+import DetailBoxAddition from './DetailBoxAddition'
 
 class DetailBox extends React.Component {
   render() {
@@ -30,7 +30,7 @@ class DetailBox extends React.Component {
         <br />
         <Row type='flex' justify='center'>
           <Col xs={23} sm={23}>
-            <DetailBoxInfo createTime={createTime} tags={tags || []} repostNotice={repostNotice} />
+            <DetailBoxAddition createTime={createTime} tags={tags || []} repostNotice={repostNotice} />
           </Col>
         </Row>
 
