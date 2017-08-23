@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import controller from '../controller/index'
@@ -84,21 +84,6 @@ class DetailPage extends React.Component {
               }
             />
           </Grid>
-          {/* <Hidden only={['sm', 'xs']}>
-            <Grid style={{
-              overflow: 'hidden'
-            }}>
-              <div style={{
-                position: 'fixed',
-                height: '100%',
-                top: '1em',
-                padding: '1em 0 1 1.2em',
-                overflow: 'auto'
-              }}>
-                <DetailCatalog />
-              </div>
-            </Grid>
-          </Hidden> */}
         </Grid>
 
         <div
@@ -118,7 +103,7 @@ class DetailPage extends React.Component {
 
         <AboutMe />
         <Copyright />
-      </div>
+      </div >
     )
   }
 }

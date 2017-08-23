@@ -45,7 +45,7 @@ export function getThemeSetting(themeName) {
       },
       comment: {
         borderColor: grey[
-        isSimple ? 300 : 300
+        isSimple ? 300 : 400
         ]
       },
       detailCatalog: {

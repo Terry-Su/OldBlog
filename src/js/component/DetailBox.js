@@ -22,17 +22,25 @@ class DetailBox extends React.Component {
 
     return (
       <div id="detail">
-        <h1 id='blog_title' style={{
-          textAlign: 'center'
-        }}>{title}</h1>
-        <br />
+        <h1
+          id='blog_title'
+          style={{
+            textAlign: 'center',
+            padding: '1em 0 0.5em 0'
+          }}
+          children={title}
+        />
+
         <DetailBoxContentContainer content={cacheDetail} />
-        <br />
-        <Row type='flex' justify='center'>
-          <Col xs={23} sm={23}>
+
+        <div
+          style={{
+            padding: '2em 0 0 0'
+          }}
+          children={
             <DetailBoxAddition createTime={createTime} tags={tags || []} repostNotice={repostNotice} />
-          </Col>
-        </Row>
+          }
+        />
 
       </div>
     )
