@@ -14,6 +14,7 @@ class CommentBox extends React.Component {
     const {
       commentInfos,
       detailCommentIssueUrl,
+      lang,
     } = this.props
     const issue = commentInfos && commentInfos.length > 0 && commentInfos[0].issue
 
@@ -23,8 +24,32 @@ class CommentBox extends React.Component {
           paddingBottom: '1em',
           fontSize: '16px'
         }}>
-          Want to leave a comment? Visit <a href={detailCommentIssueUrl}>this post's issue page</a> on GitHub (you'll need a GitHub account).
-      </h3>
+          {
+            ({
+              zh: `想要评论？ 访问`,
+              en: `Want to leave a comment? Visit `,
+            })[lang]
+          }
+          {
+            ({
+              zh:
+              <span>
+                Github上
+                <a href={detailCommentIssueUrl}>
+                  此博客的评论话题
+                </a>
+                （需登陆Github）
+              </span>,
+              en:
+              <span>
+                <a href={detailCommentIssueUrl}>
+                  this post's issue page
+                </a>
+                &nbsp;on GitHub (you'll need a GitHub account)
+              </span>,
+            })[lang]
+          }
+        </h3>
 
         {
           commentInfos && commentInfos.map((commentInfo, i) => (
@@ -36,7 +61,7 @@ class CommentBox extends React.Component {
           ))
         }
 
-      </div>
+      </div >
     )
   }
 }
@@ -76,11 +101,10 @@ export default connect(
       })
     })
 
-
-
     return {
       commentInfos,
-      detailCommentIssueUrl
+      detailCommentIssueUrl,
+      lang: state.innerState.lang,
     }
   },
   (dispatch, ownProps) => {

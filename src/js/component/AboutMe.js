@@ -1,9 +1,18 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
+import controller from '../controller/index'
+
+import { githubUrl } from '../store/initialState'
+
 
 import Grid from 'material-ui/Grid'
 
 
-export default function AboutMe() {
+
+function AboutMe({
+  githubUrl
+}) {
   return (
     <Grid
       container
@@ -12,16 +21,29 @@ export default function AboutMe() {
         paddingTop: '5em'
       }}
       children={
-        <Grid
-          item
-          children={
+        <Grid item>
+          <a href={githubUrl}>
             <img
               src='./public/images/gb-icon.png'
               width='30'
             />
-          }
-        />
+          </a>
+        </Grid>
       }
     />
   )
 }
+
+
+export default connect(
+  (state, ownProps) => {
+    return {
+      githubUrl
+    }
+  },
+  (dispatch, ownProps) => {
+    return {
+
+    }
+  }
+)(AboutMe)

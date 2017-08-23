@@ -6,7 +6,10 @@ import Paper from 'material-ui/Paper'
 import controller from '../controller/index'
 
 
-function Notion({ blogTitle }) {
+function Notion({ 
+  blogTitle,
+  lang 
+}) {
   return (
     <div>
       <Paper style={{
@@ -16,7 +19,12 @@ function Notion({ blogTitle }) {
         <h1 style={{
           color: 'black'
         }}>
-          {blogTitle}
+          {
+            ({
+              zh: `Terry Su的博客`,
+              en: `Terry Su's Blog`,
+            })[lang]
+          }
         </h1>
       </Paper>
     </div>
@@ -28,7 +36,8 @@ function Notion({ blogTitle }) {
 export default connect(
   (state, ownProps) => {
     return {
-      blogTitle: state.blog.blogTitle
+      blogTitle: state.blog.blogTitle,
+      lang: state.innerState.lang,
     }
   },
   (dispatch, ownProps) => {

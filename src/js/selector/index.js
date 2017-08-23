@@ -5,3 +5,7 @@ export function getPath() {
 export function getTheme() {
   return window.getState().innerState.theme
 }
+
+export function getLang() {
+  return window.getState().innerState.lang
+}

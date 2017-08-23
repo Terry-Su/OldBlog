@@ -12,7 +12,12 @@ import { withTheme } from 'material-ui/styles'
 import NewestColumnItem from './NewestColumnItem'
 
 
-function NewestColumn({ blogs, onTitleClick, theme }) {
+function NewestColumn({
+  blogs,
+  onTitleClick,
+  theme,
+  lang,
+ }) {
   return (
     <div>
       <Paper style={{
@@ -27,7 +32,12 @@ function NewestColumn({ blogs, onTitleClick, theme }) {
           <Typography type='title' style={{
             color: theme.newestColumn.titleColor
           }} >
-            The newest
+            {
+              ({
+              zh: `最新博客`,
+              en: `The newest blogs`,
+            })[lang]
+            }
         </Typography>
         </div>
 
@@ -60,7 +70,8 @@ export default connect(
     const sortedBlogs = blogs.slice(0, 5)
     return {
       title: state.blog.NewestColumnTitle,
-      blogs: sortedBlogs
+      blogs: sortedBlogs,
+      lang: state.innerState.lang,
     }
   },
   (dispatch, ownProps) => {

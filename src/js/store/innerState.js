@@ -1,4 +1,7 @@
-import { themes } from '../store/initialState'
+import { 
+  theme,
+  lang,
+} from '../store/initialState'
 
 export default {
   cacheDetail: null,
@@ -6,5 +9,7 @@ export default {
   cacheDetailComments: null,
   cacheDetailCommentIssueUrl: null,
 
-  theme: themes[0],
+  theme,
+  
+  lang,
 }

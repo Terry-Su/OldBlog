@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 
 import controller from '../controller/index'
 
+import { themes } from '../store/initialState'
+
 import { withTheme } from 'material-ui/styles'
 import Paper from 'material-ui/Paper'
 import Avatar from 'material-ui/Avatar'
@@ -17,7 +19,8 @@ class ThemeSwitch extends Component {
   render() {
     const {
       theme,
-      themeName
+      langThemeName,
+      lang
     } = this.props
 
     const { tag: themeTag } = theme
@@ -33,18 +36,29 @@ class ThemeSwitch extends Component {
           textDecoration: 'none'
         }}
         onClick={this.onBtnClick}
-        children={
-          themeName
-        }
-      />
+      >
+        {langThemeName}
+      </AWrapper>
     )
   }
 }
 
 export default connect(
   (state, ownProps) => {
+    const {
+      theme: themeName,
+      lang
+    } = state.innerState
+
+    const langThemeName = getLangThemeName({
+      themes,
+      themeName,
+      lang,
+    })
+
     return {
-      themeName: state.innerState.theme
+      langThemeName,
+      lang,
     }
   },
   (dispatch, ownProps) => {
@@ -57,3 +71,33 @@ export default connect(
 )(withTheme(ThemeSwitch))
 
 
+function getLangThemeName({
+  themes,
+  themeName,
+  lang,
+}) {
+  switch (themes.indexOf(themeName)) {
+    case 0:
+      return ({
+        zh: `春`,
+        en: themeName,
+      })[lang]
+    case 1:
+      return ({
+        zh: `夏`,
+        en: themeName,
+      })[lang]
+    case 2:
+      return ({
+        zh: `秋`,
+        en: themeName,
+      })[lang]
+    case 3:
+      return ({
+        zh: `冬`,
+        en: themeName,
+      })[lang]
+    default:
+      return ''
+  }
+}

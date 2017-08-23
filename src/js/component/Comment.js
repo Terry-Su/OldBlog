@@ -37,7 +37,7 @@ class Comment extends Component {
               <Avatar src='https://avatars2.githubusercontent.com/u/23733477?v=4' />
             }
             title={userName}
-            subheader={`commented on ${createTime}`}
+            subheader={`commented on ${moment(createTime).format('YYYY-MM-DD HH:MM')}`}
           >
           </CardHeader>
           <div

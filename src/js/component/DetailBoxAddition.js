@@ -1,8 +1,16 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
+import controller from '../controller/index'
 
 import Tag from './Tag'
 
-export default function DetailBoxInfo({ createTime, tags, repostNotice }) {
+function DetailBoxAddition({
+  createTime,
+  tags,
+  repostNotice,
+  lang,
+}) {
   return (
     <div style={{
       textAlign: 'right',
@@ -20,19 +28,51 @@ export default function DetailBoxInfo({ createTime, tags, repostNotice }) {
       <div style={{
         padding: '5px 0 5px 0'
       }}>
-        <b>Created Time:&nbsp;&nbsp;</b>
+        <b>
+          {
+            ({
+              zh: `创建时间：`,
+              en: `Created Time:`,
+            })[lang]
+          }&nbsp;&nbsp;</b>
         <span>{createTime}</span>
       </div>
 
       <div style={{
         padding: '5px 0 5px 0'
       }}>
-        <b>Reprinting Note:&nbsp;&nbsp;</b>
+        <b>
+          {
+            ({
+              zh: `转载说明：`,
+              en: `Reprinting Note:`,
+            })[lang]
+          }
+          &nbsp;&nbsp;</b>
         <span>
-          {repostNotice}
+          {
+            ({
+              zh: `本文为原创文章，转载请注明出处`,
+              en: `This article is original, reprint please indicate the source`,
+            })[lang]
+          }
         </span>
         {/* 本文为原创文章，转载请注明出处 */}
       </div>
     </div>
   )
 }
+
+
+export default connect(
+  (state, ownProps) => {
+    return {
+      lang: state.innerState.lang,
+    }
+  },
+  (dispatch, ownProps) => {
+    return {
+
+    }
+  }
+)(DetailBoxAddition)

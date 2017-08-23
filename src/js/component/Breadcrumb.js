@@ -15,7 +15,8 @@ function Breadcrumb({
   isBlogDetail,
   onHomeClick,
   onSecondClick,
-  theme
+  theme,
+  lang,
 }) {
   const second = {
     blog
@@ -32,7 +33,12 @@ function Breadcrumb({
             <a href="javascript:void(0)" style={{
               color: theme.breadcrumb.color
             }}>
-              Home
+              {
+                ({
+                  zh: `主页`,
+                  en: `Home`,
+                })[lang]
+              }
             </a>
           </Typography>
 
@@ -67,6 +73,7 @@ function Breadcrumb({
 export default connect(
   (state, ownProps) => {
     return {
+      lang: state.innerState.lang,
     }
   },
   (dispatch, ownProps) => {

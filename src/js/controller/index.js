@@ -4,14 +4,16 @@ import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
 import { browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux'
-import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+
+
+import { getBlogReducer, getTotalReducer } from '../reducer/index'
+import innerStateReducer from '../reducer/innerState'
+
 import {
   FETCH_BLOG_DATA,
   FETCH_BLOG_DETAIL,
 } from '../model/index'
-import { getBlogReducer } from '../reducer/index'
-import innerStateReducer from '../reducer/innerState'
-import reducers from '../reducer/index'
 
 import Blog from '../component/Blog'
 
@@ -19,9 +21,13 @@ import action from '../action/index'
 
 import { getTheme } from '../selector/index'
 
-import logger from '../util/logger'
 import marked from '../util/marked'
+import logger from '../util/reduxMiddleware/logger'
+import setStateToLocalStore from '../util/reduxMiddleware/setStateToLocalStore'
+
 import coupleVar from '../store/coupleVar'
+
+import exportGlobal from '../global/exportGlobal'
 
 import controllersManager from './controllersManager'
 
@@ -31,7 +37,8 @@ const {
 
 const {
   commentController,
-  styleController
+  styleController,
+  langController
 } = controllersManager
 
 const {
@@ -44,6 +51,10 @@ const {
 } = styleController
 
 
+const {
+  autoSwitchLang
+} = langController
+
 let {
   commentUrl
 } = coupleVar
@@ -52,14 +63,17 @@ let {
 class Controller {
   onCategoryClick(category) {
     browserHistory.push(`/${category}`)
+    this.scrollToTop()
   }
 
   onTagClick(tag) {
     browserHistory.push(`/tag/${tag}`)
+    this.scrollToTop()
   }
 
   onBlogLinkClick(blog) {
     browserHistory.push(`/blog/${blog.id}`)
+    this.scrollToTop()
   }
 
   onSecondClick({
@@ -71,12 +85,15 @@ class Controller {
 
   onHomeClick() {
     browserHistory.push(`/`)
-
     this.scrollToTop()
   }
 
   onThemeBtnClick() {
     autoSwitchTheme()
+  }
+
+  onLangBtnClick() {
+    autoSwitchLang()
   }
 
   scrollToTop() {
@@ -154,17 +171,26 @@ class Controller {
       .then(response => response.json())
       .then(blogData => {
         const blogReducer = getBlogReducer(blogData)
-        const reducer = combineReducers({
+
+        // const reducer = combineReducers({
+        const reducer = getTotalReducer({
           innerState: innerStateReducer,
           blog: blogReducer,
-          routing: routerReducer
+          // routing: routerReducer,
         })
 
-        window.ReduxStore = createStore(reducer, applyMiddleware(logger, thunkMiddleware))
-        window.getState = () => window.ReduxStore.getState()
+        const ReduxStore = createStore(reducer, applyMiddleware(logger, thunkMiddleware, setStateToLocalStore))
+
+        const getState = () => ReduxStore.getState()
 
         // crate history
         // const history = syncHistoryWithStore(browserHistory, ReduxStore)
+
+        // export global varibles
+        exportGlobal({
+          ReduxStore,
+          getState,
+        })
 
         render(
           <Provider store={ReduxStore}>
@@ -173,6 +199,8 @@ class Controller {
           </Provider>,
           document.getElementById('app')
         )
+
+        
       })
   }
 }

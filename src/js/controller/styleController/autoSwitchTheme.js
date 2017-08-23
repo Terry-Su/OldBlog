@@ -11,7 +11,7 @@ const {
   MODIFY_INNERSTATE
 } = action
 
-function* themesIteratorMaker() {
+function* themeIteratorMaker() {
   while (true) {
     let theme = getTheme()
     const index = (themes.indexOf(theme) + 1) % themes.length
@@ -19,14 +19,14 @@ function* themesIteratorMaker() {
   }
 }
 
-const themesMaker = themesIteratorMaker()
+const themeMaker = themeIteratorMaker()
 
 export default function autoSwitchTheme() {
-  // const newTheme = themesMaker.next()
-  const newTheme = themesMaker.next().value
-  MODIFY_INNERSTATE('theme', newTheme)
+  const theme = themeMaker.next().value
+
+  MODIFY_INNERSTATE('theme', theme)
   
-  const themeSetting = getThemeSetting(newTheme)
+  const themeSetting = getThemeSetting(theme)
   updateBodyBackGroundColor(
     themeSetting.backgroundColor
   )  

@@ -15,7 +15,8 @@ class BackToTop extends React.Component {
 
   render() {
     const {
-      theme
+      theme,
+      lang,
     } = this.props
 
     return (
@@ -27,10 +28,16 @@ class BackToTop extends React.Component {
             background: 'none',
             padding: '1em',
           }}
+          onClick={this.onBackToTopClick}
           children={
-            <span onClick={this.onBackToTopClick}>
-              Back To Top
-              </span>
+            <span >
+              {
+                ({
+                  zh: `返回顶部`,
+                  en: `Back To Top`,
+                })[lang]
+              }
+            </span>
           }
         />
       </div>
@@ -42,6 +49,7 @@ class BackToTop extends React.Component {
 export default connect(
   (state, ownProps) => {
     return {
+      lang: state.innerState.lang,
     }
   },
   (dispatch, ownProps) => {
