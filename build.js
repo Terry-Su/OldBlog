@@ -84,7 +84,7 @@ function getBlogData() {
       } = fileInfo
       const htmlTxt = fs.readFileSync(path, { encoding: 'utf8' })
       const resolvedPath = path.replace(__dirname, '')
-      let tags = ''
+      let tags = []
 
       // get abstract
       const abstract = `${htmlToText.fromString(htmlTxt).substring(0, 100)}...`
@@ -150,7 +150,7 @@ function getBlogData() {
     tags = tags.filter((item, pos, arr) => {
       return arr.indexOf(item) === pos && item != ''
     })
-
+    
     return tags
   }
 

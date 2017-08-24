@@ -10,7 +10,7 @@ const NODE_ENV = process.env.NODE_ENV
 const NODE_PORT = process.env.NODE_PORT
 
 
-if (NODE_ENV === 'DEV') {
+if (true) {
   // create server
   app.use(express.static(__dirname))
 
@@ -86,9 +86,9 @@ module.exports = {
       // new UglifyJSPlugin({
       //   compress: { warnings: false }
       // })
-      new BundleAnalyzerPlugin()
+    //   new BundleAnalyzerPlugin()
     ]
     : [
-      new BundleAnalyzerPlugin()
+      // new BundleAnalyzerPlugin()
     ]
 }

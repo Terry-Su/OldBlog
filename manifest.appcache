@@ -1,10 +1,9 @@
 CACHE MANIFEST
 
-CACHE
+CACHE:
 index.html
 404.html
 public/bundle.js
-public/manifest.json
+data/blog/blogData.json
 
-
-# 201708241128
+# 201708241132

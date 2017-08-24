@@ -29,15 +29,15 @@ function ListPage({
         }}
         children={
           <Grid container>
-            <Grid item xs={7} style={{
+            <Grid item xs={4} style={{
               padding: '0 0 0 2em'
             }}>
               <Breadcrumb />
             </Grid>
-            <Grid item container xs={5} justify='flex-end' align='center'>
+            <Grid item container xs={8} justify='flex-end' align='center'>
               <div
                 style={{
-                  padding: '0 2em 0 0'
+                  padding: '0 1.5em 0 0'
                 }}
                 children={
                   <div>
