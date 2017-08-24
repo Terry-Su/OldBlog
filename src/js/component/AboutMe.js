@@ -24,7 +24,7 @@ function AboutMe({
         <Grid item>
           <a href={githubUrl}>
             <img
-              src='http://terry-su.github.io/public/images/gb-icon.png'
+              src='https://terry-su.github.io/public/images/gb-icon.png'
               width='30'
             />
           </a>
