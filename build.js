@@ -14,10 +14,7 @@ const inputPath = path.resolve(__dirname, './data/blog/src/**/*.md')
 const outputPath = path.resolve(__dirname, './data/blog/dist')
 const outputFilesPath = path.resolve(__dirname, './data/blog/dist/**/*.html')
 const blogDataPath = path.resolve(__dirname, './data/blog/blogData.json')
-const basicManifestFilePath = path.resolve(__dirname, './config/basicManifest.appcache')
-const originManifestPath = path.resolve(__dirname, './manifest.appcache')
 
-const generateManifest = require('./build/generateManifest')
 
 // transform markdown files to html
 gulp.src(inputPath)
@@ -28,12 +25,11 @@ gulp.src(inputPath)
 
 // build blog data
 const data = getBlogData()
-fs.writeFileSync(blogDataPath, JSON.stringify(data))
-
-// generate manifest
-const basicManifest = fs.readFileSync(basicManifestFilePath, { encoding: 'utf-8' })
-const manifest = generateManifest(basicManifest, outputPath)
-fs.writeFileSync(originManifestPath, manifest)
+fs.writeFile(blogDataPath, JSON.stringify(data), function (err) {
+  if (err) {
+    return console.log(err);
+  }
+});
 
 
 function getBlogData() {
