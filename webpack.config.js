@@ -1,16 +1,14 @@
-var webpack = require('webpack')
-var path = require('path')
-var express = require('express')
-var app = express()
-var NODE_ENV = process.env.NODE_ENV
-var NODE_PORT = process.env.NODE_PORT
+const webpack = require('webpack')
+const path = require('path')
+const express = require('express')
+const app = express()
+const CompressionPlugin = require("compression-webpack-plugin")
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
-var plugins = [];
-if (NODE_ENV === 'PROD') {
-  // add plugins
-  // plugins.push(new webpack.optimize.CommonsChunkPlugin('vendor.js'));
-  // plugins.push(new webpack.optimize.UglifyJsPlugin());
-}
+const NODE_ENV = process.env.NODE_ENV
+const NODE_PORT = process.env.NODE_PORT
+
 
 if (NODE_ENV === 'DEV') {
   // create server
@@ -76,5 +74,21 @@ module.exports = {
       blogData: path.resolve(__dirname, 'data/index.js')
     }
   },
-  plugins: plugins
+  plugins: NODE_ENV === 'PROD' ?
+    [
+      // new CompressionPlugin({
+      //   asset: "[path].gz[query]",
+      //   algorithm: "gzip",
+      //   test: /\.(js)$/,
+      //   threshold: 10240,
+      //   minRatio: 0.8
+      // }),
+      // new UglifyJSPlugin({
+      //   compress: { warnings: false }
+      // })
+      new BundleAnalyzerPlugin()
+    ]
+    : [
+      new BundleAnalyzerPlugin()
+    ]
 }

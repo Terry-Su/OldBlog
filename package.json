@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=DEV NODE_PORT=3200 webpack --watch",
-    "build": "cross-env NODE_ENV=PROD webpack -p"
+    "start": "cross-env NODE_ENV=DEV NODE_PORT=3200 webpack --w",
+    "build": "cross-env NODE_ENV=PROD webpack -p --w",
+    "server": "cross-env NODE_PORT=3200 node script/server.js"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +19,7 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-2": "^6.22.0",
+    "compression-webpack-plugin": "^1.0.0",
     "cross-env": "^5.0.1",
     "css-loader": "^0.26.0",
     "directory-tree": "^2.0.0",
@@ -46,7 +48,9 @@
     "redux-thunk": "^2.2.0",
     "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
-    "webpack": "^3.0.0"
+    "uglifyjs-webpack-plugin": "^0.4.6",
+    "webpack": "^3.0.0",
+    "webpack-bundle-analyzer": "^2.9.0"
   },
   "dependencies": {
     "through2": "^2.0.3"

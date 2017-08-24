@@ -8,8 +8,6 @@ import { withTheme } from 'material-ui/styles'
 
 import controller from '../controller/index'
 
-import { Menu } from 'antd'
-
 import CatalogTags from './CatalogTags'
 
 

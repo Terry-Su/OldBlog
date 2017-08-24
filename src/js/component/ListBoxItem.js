@@ -11,21 +11,23 @@ function ListBoxItem({
   theme,
 }) {
   return (
-    <Paper style={{
-      background: 'none'
-    }}>
-      <Typography type="headline" component="h3" style={{
-        padding: '10px 0',
-        color: theme.listBox.titleColor
-      }} onClick={onClick}>
-       {blog.title}
-      </Typography>
-      <Typography type="caption" component="p" style={{
-        color: theme.listBox.color
+    <a onClick={onClick}>
+      <Paper style={{
+        background: 'none'
       }}>
-        {blog.abstract}
-      </Typography>
-    </Paper>
+        <Typography type="headline" component="h3" style={{
+          padding: '10px 0',
+          color: theme.listBox.titleColor
+        }}>
+          {blog.title}
+        </Typography>
+        <Typography type="caption" component="p" style={{
+          color: theme.listBox.color
+        }}>
+          {blog.abstract}
+        </Typography>
+      </Paper>
+    </a>
   )
 }
 

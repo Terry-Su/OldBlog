@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import moment from 'moment'
+
 import marked from '../util/marked'
+import formatDate from '../util/date/formatDate'
 
 import Card, { CardHeader, CardContent } from 'material-ui/Card'
 import Avatar from 'material-ui/Avatar'
@@ -37,7 +38,9 @@ class Comment extends Component {
               <Avatar src='https://avatars2.githubusercontent.com/u/23733477?v=4' />
             }
             title={userName}
-            subheader={`commented on ${moment(createTime).format('YYYY-MM-DD HH:MM')}`}
+            subheader={`commented on ${
+              formatDate(new Date(createTime), 'yyyy/MM/dd HH:mm')
+            }`}
           >
           </CardHeader>
           <div

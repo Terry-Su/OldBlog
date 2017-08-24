@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import moment from 'moment'
 import { connect } from 'react-redux'
+
+import formatDate from '../util/date/formatDate'
 
 import Grid from 'material-ui/Grid'
 import Hidden from 'material-ui/Hidden'
@@ -26,9 +27,13 @@ class NewestColumnItem extends Component {
               color: theme.newestColumn.timeColor
             }}>
               <Hidden only={['sm', 'xs']}>
-                <span>{moment(blog.createTime).format('YYYY/')}</span>
+                <span>{
+                  `${
+                    formatDate(new Date(blog.createTime), 'yyyy')
+                  }/`
+                }</span>
               </Hidden>
-              {moment(blog.createTime).format('MM/DD')}
+              {formatDate(new Date(blog.createTime), 'MM/dd')}
             </a>
           </Grid>
           <Grid item xs={8}>

@@ -1,17 +1,9 @@
 import React from 'react'
-import {
-  Col,
-  Row,
-  Layout,
-} from 'antd'
 
 import Breadcrumb from './Breadcrumb'
 import DetailBox from './DetailBox'
 import Copyright from './Copyright'
 
-const {
-  Header
-} = Layout
 
 export default function LaboratoryPage() {
   return (

@@ -3,10 +3,6 @@ import { connect } from 'react-redux'
 
 import controller from '../controller/index'
 
-import {
-  Col,
-  Row
-} from 'antd'
 import DetailBoxContentContainer from './DetailBoxContentContainer'
 import DetailBoxAddition from './DetailBoxAddition'
 

@@ -1,5 +1,5 @@
 // style
-import 'antd/dist/antd.css'
+import './sass/antd.scss'
 import './sass/app.scss'
 import './sass/highlight.css'
 import './sass/ts_markdown.scss'

@@ -26,15 +26,18 @@ class HomePage extends Component {
           }}
           children={
             <Grid container>
-              <Grid item sm={7} xs={11} style={{
-                padding: '0 0 0 2em'
-              }}>
+              <Hidden only={['xs']}>
+                <Grid item style={{
+                  padding: '0 0 0 2em'
+                }}/>
+              </Hidden>
+              <Grid item sm={6} xs={11} >
                 <Notion />
               </Grid>
               <Hidden only={['xl', 'lg', 'md', 'sm']}>
                 <Grid item xs={11} style={{
                   padding: '2em 0 0 0'
-                }}/>
+                }} />
               </Hidden>
               <Grid item container sm={5} xs={11} justify='flex-end' align='center'>
                 <div
@@ -68,7 +71,7 @@ class HomePage extends Component {
             padding: '2em 0 0 0'
           }}
           children={
-            <Grid container justify='center' spacing={40}>
+            <Grid container justify='center' >
               <Grid item md={5} sm={5} xs={11}>
                 <NewestColumn />
               </Grid>

@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import moment from 'moment'
 
 import { withTheme } from 'material-ui/styles'
 
