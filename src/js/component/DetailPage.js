@@ -40,15 +40,27 @@ class DetailPage extends React.Component {
           }}
           children={
             <Grid container>
-              <Grid item xs={7} style={{
-                padding: '0 0 0 2em'
-              }}>
-                <Breadcrumb isBlogDetail blog={blog} />
-              </Grid>
-              <Grid item container xs={5} justify='flex-end' align='center'>
+              <Hidden only={['xs']}>
+                <Grid item xs={6} style={{
+                  padding: '0 0 0 2em'
+                }}>
+                  <Breadcrumb isBlogDetail blog={blog} />
+                </Grid>
+              </Hidden>
+              <Hidden only={['xl', 'lg', 'md', 'sm']}>
+                <Grid item xs={6} style={{
+                  padding: '0 0 0 1em'
+                }}>
+                  <Breadcrumb isBlogDetail blog={blog} />
+                </Grid>
+              </Hidden>
+
+
+
+              <Grid item container xs={6} justify='flex-end' align='center'>
                 <div
                   style={{
-                    padding: '0 2em 0 0'
+                    // padding: '0 2em 0 0'
                   }}
                   children={
                     <div>
@@ -66,6 +78,22 @@ class DetailPage extends React.Component {
                     </div>
                   }
                 />
+                <Hidden only={['xs']}>
+                  <span
+                    style={{
+                      display: 'inline-block',
+                      padding: '0 2em 0 0 '
+                    }}
+                  />
+                </Hidden>
+                <Hidden only={['xl', 'lg', 'md', 'sm']}>
+                  <span
+                    style={{
+                      display: 'inline-block',
+                      padding: '0 1em 0 0 '
+                    }}
+                  />
+                </Hidden>
               </Grid>
             </Grid>
           }
