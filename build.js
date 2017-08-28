@@ -102,8 +102,8 @@ function getBlogData() {
       // the file has no relevant markdown file
       if (isError) { stat = fs.statSync(path) }
 
-      const { ctime } = stat
-      let createTime = ctime
+      const { birthtime } = stat
+      let createTime = birthtime
 
       // get tag and createTime
       const { window } = new JSDOM(htmlTxt)

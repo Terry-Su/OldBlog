@@ -6,7 +6,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=DEV NODE_PORT=3200 webpack --w",
     "build": "cross-env NODE_ENV=PROD NODE_PORT=3200 webpack -p --w",
-    "server": "cross-env NODE_PORT=3200 node script/server.js"
+    "server": "cross-env NODE_PORT=3200 node script/server.js",
+    "test": "jasmine"
   },
   "keywords": [],
   "author": "",
@@ -29,6 +30,7 @@
     "gulp-rename": "^1.2.2",
     "highlight.js": "^9.12.0",
     "html-to-text": "^3.3.0",
+    "jasmine": "^2.8.0",
     "jquery": "^3.2.1",
     "jsdom": "^11.1.0",
     "markdown": "^0.5.0",
