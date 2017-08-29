@@ -30,7 +30,7 @@ module.exports = {
     path: __dirname,
     filename: 'public/bundle.js'
   },
-  devtool: "source-map",
+  devtool: NODE_ENV === 'PROD' ? false : "source-map",
   module: {
     rules: [
       {
