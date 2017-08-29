@@ -55,6 +55,7 @@
     "webpack-bundle-analyzer": "^2.9.0"
   },
   "dependencies": {
+    "history": "^3.0.0",
     "through2": "^2.0.3"
   }
 }

@@ -12,6 +12,7 @@ import controller from '../controller/index'
 
 import withGlobalTheme from '../util/componentHelper/withGlobalTheme'
 
+import { baseUrl } from 'initialState'
 
 import UpdateBodyBackGroundColor from './UpdateBodyBackGroundColor'
 import HomePage from './HomePage'
@@ -60,13 +61,13 @@ function getRoutes({
 }) {
   return (
     <Route>
-      <Route exact path="/" component={HomePage} ></Route>
+      <Route exact path={`${baseUrl}`} component={HomePage} ></Route>
 
       {
         // List page - category
         catalog.map((category, index) => {
           const targetListPage = () => <ListPage category={category} />
-          return <Route key={index} path={`/${category}`} component={targetListPage} />
+          return <Route key={index} path={`${baseUrl}/${category}`} component={targetListPage} />
         })
       }
 
@@ -74,7 +75,7 @@ function getRoutes({
         // Tag page - tag
         tags.map((tag, index) => {
           const targetTagPage = () => <TagPage tag={tag} />
-          return <Route key={index} path={`/tag/${tag}`} component={targetTagPage} />
+          return <Route key={index} path={`${baseUrl}/tag/${tag}`} component={targetTagPage} />
         })
       }
 
@@ -82,7 +83,7 @@ function getRoutes({
         // Blog detail page
         blogs.map((blog, index) => {
           const targetDetailPage = () => <DetailPage blog={blog} />
-          return <Route key={index} path={`/blog/${blog.id}`} component={targetDetailPage} />
+          return <Route key={index} path={`${baseUrl}/blog/${blog.id}`} component={targetDetailPage} />
         })
       }
     </Route>

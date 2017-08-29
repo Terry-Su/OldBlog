@@ -25,7 +25,10 @@ import setStateToLocalStore from '../util/reduxMiddleware/setStateToLocalStore'
 
 import coupleVar from '../store/coupleVar'
 
+import { baseUrl } from 'initialState'
+
 import exportGlobal from '../global/exportGlobal'
+
 
 import controllersManager from './controllersManager'
 
@@ -60,17 +63,17 @@ let {
 
 class Controller {
   onCategoryClick(category) {
-    browserHistory.push(`/${category}`)
+    browserHistory.push(`${baseUrl}/${category}`)
     this.scrollToTop()
   }
 
   onTagClick(tag) {
-    browserHistory.push(`/tag/${tag}`)
+    browserHistory.push(`${baseUrl}/tag/${tag}`)
     this.scrollToTop()
   }
 
   onBlogLinkClick(blog) {
-    browserHistory.push(`/blog/${blog.id}`)
+    browserHistory.push(`${baseUrl}/blog/${blog.id}`)
     this.scrollToTop()
   }
 
@@ -82,7 +85,7 @@ class Controller {
   }
 
   onHomeClick() {
-    browserHistory.push(`/`)
+    browserHistory.push(`${baseUrl}`)
     this.scrollToTop()
   }
 

@@ -1,6 +1,8 @@
 const initialState = {
   
 }
+export const baseUrl = `/BLOG`
+
 
 export const themes = [
   'Spring',

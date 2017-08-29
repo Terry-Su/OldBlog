@@ -12,11 +12,11 @@ const NODE_PORT = process.env.NODE_PORT
 
 if (true) {
   // create server
-  app.use(express.static(__dirname))
+  app.use(express.static(path.resolve(__dirname, './../')))
 
-  // // 404
+  // 404
   app.use(function (req, res, next) {
-    res.status(404).redirect(`http://localhost:${NODE_PORT}?p=${req.originalUrl}`)
+    res.status(404).redirect(`http://localhost:${NODE_PORT}/blog/?p=${req.originalUrl}`)
     next()
   })
 
@@ -71,7 +71,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      blogData: path.resolve(__dirname, 'data/index.js')
+      blogData: path.resolve(__dirname, 'data/index.js'),
+      initialState: path.resolve(__dirname, './src/js/store/initialState.js')
     }
   },
   plugins: NODE_ENV === 'PROD' ?
