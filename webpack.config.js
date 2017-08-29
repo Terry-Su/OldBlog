@@ -77,17 +77,18 @@ module.exports = {
   },
   plugins: NODE_ENV === 'PROD' ?
     [
-      // new CompressionPlugin({
-      //   asset: "[path].gz[query]",
-      //   algorithm: "gzip",
-      //   test: /\.(js)$/,
-      //   threshold: 10240,
-      //   minRatio: 0.8
-      // }),
-      // new UglifyJSPlugin({
-      //   compress: { warnings: false }
-      // })
-    //   new BundleAnalyzerPlugin()
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false,
+          drop_console: true,
+          pure_funcs: ['console.log']
+        },
+        sourceMap: false
+      }),
+
+      new webpack.optimize.ModuleConcatenationPlugin(),
+
+      // new BundleAnalyzerPlugin()
     ]
     : [
       // new BundleAnalyzerPlugin()
