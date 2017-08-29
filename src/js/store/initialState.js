@@ -1,7 +1,7 @@
 const initialState = {
   
 }
-export const baseUrl = `/BLOG`
+export const baseUrl = `/Blog`
 
 
 export const themes = [
